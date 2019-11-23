@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Zikun&#39;s blogs</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Zikun&#39;s blogs">
+  <title>OpenCV中的基本类型表示 | Zikun&#39;s blogs</title>
+  <meta name="keywords" content=" opencv ">
+  <meta name="description" content="OpenCV中的基本类型表示 | Zikun&#39;s blogs">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Zikun&#39;s blogs">
@@ -47,7 +47,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
@@ -228,12 +228,68 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-OpenCV中的类型表示" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Past-and-Future"><span class="toc-text">Past and Future</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于本站"><span class="toc-text">关于本站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客平台"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">OpenCV中的基本类型表示</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="OpenCV">OpenCV</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color2">opencv</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-23 18:14:10'>2019-11-23 09:31</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:1.1k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OpenCV中的基本类型表示"><span class="toc-text">OpenCV中的基本类型表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-点的表示"><span class="toc-text">1.点的表示</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -246,31 +302,250 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="Past-and-Future"><a href="#Past-and-Future" class="headerlink" title="Past and Future"></a>Past and Future</h2><p>研究生阶段将要开始了，迷茫的大学时代将要过去了，<strong>谨以此纪念大学4年的悠闲时光</strong><br>不定期更新关于研究生阶段的学习经验与心得</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="OpenCV中的基本类型表示"><a href="#OpenCV中的基本类型表示" class="headerlink" title="OpenCV中的基本类型表示"></a>OpenCV中的基本类型表示</h1><blockquote>
+<p>在使用OpenCV过程中，有许多自定义的类型，对于新手来说（<strong>没错，说的就是我</strong>）比较难以理解。希望记录一下，帮助理解。</p>
+</blockquote>
+<p>图像有一个或多个通道，基本数据类型也有数个。<br><strong>下面我就讲一讲基本的对应关系（这个很重要）</strong></p>
+<blockquote>
 <ul>
-<li><strong>Machine learning</strong></li>
-<li><strong>deep learning</strong></li>
-<li><strong>computer vision</strong></li>
+<li>int -&gt; i</li>
+<li>int64 -&gt; l</li>
+<li>float -&gt; f</li>
+<li>double -&gt; d</li>
+<li>unchar -&gt; u</li>
+<li>1通道 -&gt; 1</li>
+<li>2通道 -&gt; 2</li>
+<li>3通道 -&gt; 3<br>……</li>
 </ul>
-<h2 id="关于本站"><a href="#关于本站" class="headerlink" title="关于本站"></a>关于本站</h2><p><strong>Zikun‘s blog</strong> 是王治坤的个人站。</p>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<p>##鸣谢<br>感谢<strong>阿杰</strong>的主题</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 生成，部署在 <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank" rel="noopener">3-hexo</a> 已经在github上开源</p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad/手机等移动端适配</li>
-<li>页面全局快捷键 <a href='http://yelog.org/2017/03/24/3-hexo-shortcuts/' target="_blank" rel="noopener">3-hexo快捷键说明</a></li>
-</ul>
+</blockquote>
+<hr>
+<h2 id="1-点的表示"><a href="#1-点的表示" class="headerlink" title="1.点的表示"></a>1.点的表示</h2><pre><code class="c++">  // ​定义
+typedef Point_&lt;int&gt; Point2i;
+typedef Point_&lt;int64&gt; Point2l;
+typedef Point_&lt;float&gt; Point2f;
+typedef Point_&lt;double&gt; Point2d;
+typedef Point2i Point;
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+typedef Point3_&lt;int&gt; Point3i;
+typedef Point3_&lt;float&gt; Point3f;
+typedef Point3_&lt;double&gt; Point3d;
+
+//成员函数
+//点积(数量积) x1*x1+y1*y2
+_Tp dot(const Point_&amp; pt) const;
+//双精度点积
+double ddot(const Point_&amp; pt) const;
+//叉乘(向量积)x1*y2-y1*x2
+double cross(const Point_&amp; pt) const;
+//检查该点是否在指定矩形内
+bool inside(const Rect_&lt;_Tp&gt;&amp; r) const;
+</code></pre>
+<p>##2.尺寸的表示</p>
+<pre><code class="c++">​//定义
+typedef Size_&lt;int&gt; Size2i;
+typedef Size_&lt;int64&gt; Size2l;
+typedef Size_&lt;float&gt; Size2f;
+typedef Size_&lt;double&gt; Size2d;
+typedef Size2i Size;
+//成员函数
+//面积(width*height)
+_Tp area() const;
+//面积是否为0
+bool empty() const;</code></pre>
+<p>##3.Vec类：描述多通道Mat的像素<br>一般在访问像素点时经常使用，我反正是被虐了o(<em>￣▽￣</em>)o</p>
+<pre><code class="C++">typedef Vec&lt;int, 2&gt; Vec2i;
+typedef Vec&lt;int, 3&gt; Vec3i;
+typedef Vec&lt;int, 4&gt; Vec4i;
+typedef Vec&lt;int, 6&gt; Vec6i;
+typedef Vec&lt;int, 8&gt; Vec8i;
+
+typedef Vec&lt;float, 2&gt; Vec2f;
+typedef Vec&lt;float, 3&gt; Vec3f;
+typedef Vec&lt;float, 4&gt; Vec4f;
+typedef Vec&lt;float, 6&gt; Vec6f;
+
+typedef Vec&lt;double, 2&gt; Vec2d;
+typedef Vec&lt;double, 3&gt; Vec3d;
+typedef Vec&lt;double, 4&gt; Vec4d;
+typedef Vec&lt;double, 6&gt; Vec6d;
+//
+cv::Mat Img(10, 10, CV_8UC3,Scalar(255,255,255));
+uchar pixel = Img.at&lt;Vec3b&gt;(9, 9)[0];</code></pre>
+<p>##4.Matx：已知尺寸的小Mat模板<br>这个我几乎没有用到过</p>
+<pre><code class="C++">typedef Matx&lt;float, 1, 2&gt; Matx12f;
+typedef Matx&lt;double, 1, 2&gt; Matx12d;
+typedef Matx&lt;float, 1, 3&gt; Matx13f;
+typedef Matx&lt;double, 1, 3&gt; Matx13d;
+typedef Matx&lt;float, 1, 4&gt; Matx14f;
+typedef Matx&lt;double, 1, 4&gt; Matx14d;
+typedef Matx&lt;float, 1, 6&gt; Matx16f;
+typedef Matx&lt;double, 1, 6&gt; Matx16d;
+
+typedef Matx&lt;float, 2, 1&gt; Matx21f;
+typedef Matx&lt;double, 2, 1&gt; Matx21d;
+typedef Matx&lt;float, 3, 1&gt; Matx31f;
+typedef Matx&lt;double, 3, 1&gt; Matx31d;
+typedef Matx&lt;float, 4, 1&gt; Matx41f;
+typedef Matx&lt;double, 4, 1&gt; Matx41d;
+typedef Matx&lt;float, 6, 1&gt; Matx61f;
+typedef Matx&lt;double, 6, 1&gt; Matx61d;
+
+typedef Matx&lt;float, 2, 2&gt; Matx22f;
+typedef Matx&lt;double, 2, 2&gt; Matx22d;
+typedef Matx&lt;float, 2, 3&gt; Matx23f;
+typedef Matx&lt;double, 2, 3&gt; Matx23d;
+typedef Matx&lt;float, 3, 2&gt; Matx32f;
+typedef Matx&lt;double, 3, 2&gt; Matx32d;
+
+typedef Matx&lt;float, 3, 3&gt; Matx33f;
+typedef Matx&lt;double, 3, 3&gt; Matx33d;
+
+typedef Matx&lt;float, 3, 4&gt; Matx34f;
+typedef Matx&lt;double, 3, 4&gt; Matx34d;
+typedef Matx&lt;float, 4, 3&gt; Matx43f;
+typedef Matx&lt;double, 4, 3&gt; Matx43d;
+
+typedef Matx&lt;float, 4, 4&gt; Matx44f;
+typedef Matx&lt;double, 4, 4&gt; Matx44d;
+typedef Matx&lt;float, 6, 6&gt; Matx66f;
+typedef Matx&lt;double, 6, 6&gt; Matx66d;</code></pre>
+<p>##5.颜色类Scalar：<br>含有4个元素的数组，在OpenCV中被用来传递像素值，RGB三个像素值，如用不到第四个，则不用写出来。</p>
+<pre><code class="c++">template&lt;typename _Tp&gt; class Scalar_ : public Vec&lt;_Tp, 4&gt;
+typedef Scalar_&lt;double&gt; Scalar;</code></pre>
+<p>##6.Rect：矩形表示类</p>
+<pre><code class="c++">​//定义
+typedef Rect_&lt;int&gt; Rect2i;
+typedef Rect_&lt;float&gt; Rect2f;
+typedef Rect_&lt;double&gt; Rect2d;
+typedef Rect2i Rect;
+//成员函数
+//返回左上角坐标
+Point_&lt;_Tp&gt; tl() const;
+//返回右下角坐标
+Point_&lt;_Tp&gt; br() const;
+//返回矩形框的宽与高
+Size_&lt;_Tp&gt; size() const;
+//面积
+_Tp area() const;
+//面积是否为0
+bool empty() const;
+//判断点是否在矩形内
+bool contains(const Point_&lt;_Tp&gt;&amp; pt) const;</code></pre>
+<p>##7.Range类<br>用来指定Mat中的连续的行或者列，Range(a, b)表示范围从a到b的<strong>前闭后开</strong>空间[a, b)</p>
+<pre><code class="c++">//定义
+class CV_EXPORTS Range
+{
+public:
+Range();
+Range(int _start, int _end);
+Range(const CvSlice&amp; slice);
+//return end - start
+int size() const;
+//是否为空：start==end
+bool empty() const;
+static Range all();
+operator CvSlice() const;
+int start, end;
+};
+//应用举例：
+cv::Mat Img(10, 10, CV_8UC3,Scalar(255));
+//dst提取Img的第1列到第4列，，Mat(行,列)
+cv::Mat dst = Img(Range::all(), Range(1,5));</code></pre>
+<p>##8.Mat::type()的返回值<br>这个函数比较有意思，它不会直接返回一个类型，它是直接返回int型的数字。</p>
+<blockquote>
+<p>这个函数好坑，我被它玩弄了一个下午(￣▽￣)”</p>
+</blockquote>
+<p><strong>对应关系</strong></p>
+<table>
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>C1</th>
+<th>C2</th>
+<th>C3</th>
+<th>C4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CV_8U</td>
+<td>0</td>
+<td>8</td>
+<td>16</td>
+<td>24</td>
+</tr>
+<tr>
+<td>CV_8S</td>
+<td>1</td>
+<td>9</td>
+<td>17</td>
+<td>25</td>
+</tr>
+<tr>
+<td>CV_16U</td>
+<td>2</td>
+<td>10</td>
+<td>18</td>
+<td>16</td>
+</tr>
+<tr>
+<td>CV_16S</td>
+<td>3</td>
+<td>11</td>
+<td>19</td>
+<td>17</td>
+</tr>
+<tr>
+<td>CV_32S</td>
+<td>4</td>
+<td>12</td>
+<td>20</td>
+<td>28</td>
+</tr>
+<tr>
+<td>CV_32F</td>
+<td>5</td>
+<td>13</td>
+<td>21</td>
+<td>29</td>
+</tr>
+<tr>
+<td>CV_64F</td>
+<td>6</td>
+<td>14</td>
+<td>22</td>
+<td>30</td>
+</tr>
+</tbody></table>
+<p>##参考资料<br>1、<a href="https://blog.csdn.net/u012507022/article/details/83961518" target="_blank" rel="noopener" title="opencv基本数据类型">opencv基本数据类型</a><br>2、<a href="https://blog.csdn.net/pekingFloater/article/details/82688327" target="_blank" rel="noopener">OpenCV cv::Mat::type()返回值</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 525244039@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>OpenCV中的基本类型表示</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.1k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="Zikun">Zikun</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-23, 09:31:20</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-23, 18:14:10</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/23/OpenCV%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%A1%A8%E7%A4%BA/" title="OpenCV中的基本类型表示">http://zikun97.github.io/2019/11/23/OpenCV%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%A1%A8%E7%A4%BA/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -290,6 +565,13 @@
         gitalk.render('comments')
     })
 </script>
+
+
+
+
+    
+
+
 
 
     </div>
