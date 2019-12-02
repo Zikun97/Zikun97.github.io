@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Zikun&#39;s blogs</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Zikun&#39;s blogs">
+  <title>线性回归的通俗理解 | Zikun&#39;s blogs</title>
+  <meta name="keywords" content=" 线性回归 ">
+  <meta name="description" content="线性回归的通俗理解 | Zikun&#39;s blogs">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="友情提示，本文篇幅较长，可点击右上角的目录，跳转至你想快速到达的页面。 一、引言&amp;emsp;&amp;emsp;最近在学习机器学习，想用markdown记录一下自己的学习历程。无奈，其中的公式太多，只能用latex表示。（字丑，实在上不了台面） 二、推荐md编辑器&amp;emsp;&amp;emsp;强烈推荐vs code!!! 谁用这知道，太香了！而且插件丰富。我使用了 markdown preview enhanc">
 <meta name="keywords" content="mathjax,latex">
@@ -51,7 +51,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
@@ -304,12 +304,68 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-线性回归的通俗理解" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Past-and-Future"><span class="toc-text">Past and Future</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于本站"><span class="toc-text">关于本站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鸣谢"><span class="toc-text">鸣谢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客平台"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">线性回归的通俗理解</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="机器学习">机器学习</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color5">线性回归</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-12-02 21:09:49'>2019-11-26 22:25</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:758</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用场景"><span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型"><span class="toc-text">模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单形式"><span class="toc-text">简单形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一般形式"><span class="toc-text">一般形式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据"><span class="toc-text">数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#损失函数（loss）-代价（cost-函数"><span class="toc-text">损失函数（loss）/代价（cost)函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线性回归的本质-本文核心"><span class="toc-text">线性回归的本质(本文核心)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#梯度下降-与-正规方程法"><span class="toc-text">梯度下降 与 正规方程法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特征变量归一化"><span class="toc-text">特征变量归一化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#向量化"><span class="toc-text">向量化</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -322,32 +378,55 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="Past-and-Future"><a href="#Past-and-Future" class="headerlink" title="Past and Future"></a>Past and Future</h2><p>研究生阶段将要开始了，迷茫的大学时代将要过去了，<strong>谨以此纪念大学4年的悠闲时光</strong> </p>
-<p>不定期更新关于研究生阶段的学习经验与心得</p>
-<ul>
-<li><strong>Machine learning</strong></li>
-<li><strong>deep learning</strong></li>
-<li><strong>computer vision</strong></li>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>如果想节省时间，直接看（最下面）线性回归的本质</code></pre><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>&emsp;&emsp;线性回归（linear regression）是统计学中的术语，指利用线性回归方程的<strong>最小二乘</strong>函数对（一个或多个）自变量与因变量之间关系进行建模的一种回归分析。这种函数是一个或多个成为回归系数的模型参数的线性组合。只有一个自变量的情况成为简单回归，大于一个自变量的情况成为多元回归（multivariable linear regression）。</p>
+<p>&emsp;&emsp;以上摘自维基百科。</p>
+<p>&emsp;&emsp;通俗理解，就是将数据用线性函数<strong>拟合</strong>。</p>
+<hr>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>&emsp;&emsp;对于初学者来说，掌握线性回归的使用场景不是那么重要。但是，这会帮助理解机器学习的知识体系。<br>&emsp;&emsp;线性回归通常用于监督学习的回归（regression）问题。监督学习能解决两个重要的问题，一是回归，二是分类。如何分辨二者呢？很简单！回归问题的因变量是<strong>连续</strong>的；而分类问题的因变量是<strong>离散</strong>的。<br>&emsp;&emsp;线性回归用于监督学习中的回归问题。线性回归用于监督学习中的回归问题。线性回归用于监督学习中的回归问题。重要的结论讲三遍。</p>
+<hr>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><h3 id="简单形式"><a href="#简单形式" class="headerlink" title="简单形式"></a>简单形式</h3><ul>
+<li><strong>$h_{\theta}(x) = \theta_0 + \theta_1x$</strong><ul>
+<li>$h_{\theta}(x)$ . h是hypothesis（假说）的首字母，可以理解为函数/因变量——y</li>
+<li>$\theta_0 + \theta_1x$ . x是自变量</li>
 </ul>
-<h2 id="关于本站"><a href="#关于本站" class="headerlink" title="关于本站"></a>关于本站</h2><p><strong>Zikun‘s blog</strong> 是王治坤的个人站。</p>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p>感谢<strong>阿杰</strong>的主题</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 生成，部署在 <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank" rel="noopener">3-hexo</a> 已经在github上开源</p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad/手机等移动端适配</li>
-<li>页面全局快捷键 <a href='http://yelog.org/2017/03/24/3-hexo-shortcuts/' target="_blank" rel="noopener">3-hexo快捷键说明</a></li>
+</li>
 </ul>
+<h3 id="一般形式"><a href="#一般形式" class="headerlink" title="一般形式"></a>一般形式</h3><p><strong>$h_{\theta}(x_0, x_1, x_2, x_3, \cdots,x_n) = \theta_0x_0 + \theta_1x_1 + \theta_2x_2 + \cdots + \theta_nx_n $</strong><br>&emsp;&emsp;$x_0 = 1$，准确来说$\theta_0x_0$是常数项。应为要让格式整齐，就加了一个$x_0$<br>&emsp;&emsp;$x_1, x_2, x_3, \cdots,x_n$是<strong>标量</strong><br><strong>$h_{\theta}(\pmb{x}) = \pmb{\theta} \pmb{x}$</strong><br>&emsp;&emsp;$\pmb{\theta}$ 是向量，$\begin{bmatrix} \theta_0 \ \theta_1 \ \theta_2 \ \cdots \ \theta_n  \end{bmatrix}$<br>&emsp;&emsp;$\pmb{x}$是向量，$\pmb{x} = \begin{bmatrix} x_0 \ x_1\ x_2\ \cdots \ x_n \ \end{bmatrix}$<br>&emsp;&emsp;$h_\theta(\pmb{x}) = \begin{bmatrix} \theta_0x_0 + \theta_1x_0 + \cdots + \theta_nx_n \ \end{bmatrix}$ ，其实就是<strong>标量</strong></p>
+<hr>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>&emsp;&emsp;机器学习离不开数据。那么，数据形式是怎么样的呢？<br>&emsp;&emsp;在监督学习中，数据只要分为 <strong><em>自变量</em></strong> 和 <strong><em>因变量</em></strong>。自变量有一个或多个，而因变量一般只有一个。数据是格式化的，便于处理。</p>
+<hr>
+<h2 id="损失函数（loss）-代价（cost-函数"><a href="#损失函数（loss）-代价（cost-函数" class="headerlink" title="损失函数（loss）/代价（cost)函数"></a>损失函数（loss）/代价（cost)函数</h2><p>&emsp;&emsp;损失函数（代价函数）是描述模型好坏程度的有力工具。线性回归的loss函数常用<strong>最小二乘法</strong>法定义，loss函数值越小，模型越优。求loss函数有两种方式，分别是<strong>梯度下降法</strong>和<strong>正规方程法</strong>。这个我会在另写一个blog详细讲述。</p>
+<hr>
+<h2 id="线性回归的本质-本文核心"><a href="#线性回归的本质-本文核心" class="headerlink" title="线性回归的本质(本文核心)"></a>线性回归的本质(本文核心)</h2><p>&emsp;&emsp;线性回归，其实是根据问题建立一个<strong>模型</strong>（线性函数），并寻找<strong>最合适的参数</strong>，以达到最合适的拟合效果。</p>
+<h2 id="梯度下降-与-正规方程法"><a href="#梯度下降-与-正规方程法" class="headerlink" title="梯度下降 与 正规方程法"></a>梯度下降 与 正规方程法</h2><h2 id="特征变量归一化"><a href="#特征变量归一化" class="headerlink" title="特征变量归一化"></a>特征变量归一化</h2><h2 id="向量化"><a href="#向量化" class="headerlink" title="向量化"></a>向量化</h2>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 525244039@qq.com </span>
+    </div>
+</article>
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>线性回归的通俗理解</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">758</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="Zikun">Zikun</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-26, 22:25:50</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-02, 21:09:49</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/26/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3/" title="线性回归的通俗理解">http://zikun97.github.io/2019/11/26/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -367,6 +446,53 @@
         gitalk.render('comments')
     })
 </script>
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
+    
+
+
 
 
     </div>

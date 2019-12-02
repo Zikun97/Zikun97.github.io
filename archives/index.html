@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="Zikun&#39;s blogs">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="OpenCV中的基本类型表示 在使用OpenCV过程中，有许多自定义的类型，对于新手来说（没错，说的就是我）比较难以理解。希望记录一下，帮助理解。  图像有一个或多个通道，基本数据类型也有数个。下面我就讲一讲基本的对应关系（这个很重要）   int -&amp;gt; i int64 -&amp;gt; l float -&amp;gt; f double -&amp;gt; d unchar -&amp;gt; u 1通道 -&amp;gt;">
-<meta name="keywords" content="opencv">
+<meta name="description" content="友情提示，本文篇幅较长，可点击右上角的目录，跳转至你想快速到达的页面。 一、引言&amp;emsp;&amp;emsp;最近在学习机器学习，想用markdown记录一下自己的学习历程。无奈，其中的公式太多，只能用latex表示。（字丑，实在上不了台面） 二、推荐md编辑器&amp;emsp;&amp;emsp;强烈推荐vs code!!! 谁用这知道，太香了！而且插件丰富。我使用了 markdown preview enhanc">
+<meta name="keywords" content="mathjax,latex">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV中的基本类型表示">
-<meta property="og:url" content="http:&#x2F;&#x2F;zikun97.github.io&#x2F;2019&#x2F;11&#x2F;23&#x2F;OpenCV%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%A1%A8%E7%A4%BA&#x2F;index.html">
+<meta property="og:title" content="mathjax基本数学公式(latex公式)">
+<meta property="og:url" content="http:&#x2F;&#x2F;zikun97.github.io&#x2F;2019&#x2F;11&#x2F;30&#x2F;mathjax%E5%9F%BA%E6%9C%AC%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F-latex%E5%85%AC%E5%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="Zikun&#39;s blogs">
-<meta property="og:description" content="OpenCV中的基本类型表示 在使用OpenCV过程中，有许多自定义的类型，对于新手来说（没错，说的就是我）比较难以理解。希望记录一下，帮助理解。  图像有一个或多个通道，基本数据类型也有数个。下面我就讲一讲基本的对应关系（这个很重要）   int -&amp;gt; i int64 -&amp;gt; l float -&amp;gt; f double -&amp;gt; d unchar -&amp;gt; u 1通道 -&amp;gt;">
+<meta property="og:description" content="友情提示，本文篇幅较长，可点击右上角的目录，跳转至你想快速到达的页面。 一、引言&amp;emsp;&amp;emsp;最近在学习机器学习，想用markdown记录一下自己的学习历程。无奈，其中的公式太多，只能用latex表示。（字丑，实在上不了台面） 二、推荐md编辑器&amp;emsp;&amp;emsp;强烈推荐vs code!!! 谁用这知道，太香了！而且插件丰富。我使用了 markdown preview enhanc">
 <meta property="og:locale" content="ch">
-<meta property="og:updated_time" content="2019-11-23T10:19:13.998Z">
+<meta property="og:updated_time" content="2019-12-02T11:22:41.242Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -93,6 +93,14 @@
         
     
         
+        <a title="weibo" href="https://weibo.com/6011349407/profile?topnav=1&amp;wvr=6&amp;is_all=1#_rnd1574505654288" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
     
         
     
@@ -135,7 +143,7 @@
         
     
         
-        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=422116296" target="_blank">
             
                 <svg class="iconfont-svg" aria-hidden="true">
                     <use xlink:href="#icon-neteasemusic"></use>
@@ -150,11 +158,27 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(1)</small></div></li>
+    <li><div class="all active">全部文章<small>(5)</small></div></li>
     
         
             
-            <li><div data-rel="OpenCV">OpenCV<small>(1)</small></div>
+            <li><div data-rel="机器学习">机器学习<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="基础数学知识">基础数学知识<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="OpenCV">OpenCV<small>(2)</small></div>
                 
             </li>
             
@@ -170,8 +194,8 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="1">
-<input type="hidden" id="yelog_site_word_count" value="1.1k">
+<input type="hidden" id="yelog_site_posts_number" value="5">
+<input type="hidden" id="yelog_site_word_count" value="4.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -205,6 +229,22 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
+        <a class="color5">机器学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">线性回归</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">mathjax</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">latex</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a class="color2">opencv</a>
     </li>
     
@@ -213,6 +253,38 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="基础数学知识 "
+           href="/2019/11/30/mathjax%E5%9F%BA%E6%9C%AC%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F-latex%E5%85%AC%E5%BC%8F/"
+           data-tag="mathjax,latex"
+           data-author="" >
+            <span class="post-title" title="mathjax基本数学公式(latex公式)">mathjax基本数学公式(latex公式)</span>
+            <span class="post-date" title="2019-11-30 14:05:32">2019/11/30</span>
+        </a>
+        
+        <a  class="机器学习 "
+           href="/2019/11/27/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%98%AF%E4%BB%80%E4%B9%88/"
+           data-tag="机器学习"
+           data-author="" >
+            <span class="post-title" title="机器学习的本质是什么">机器学习的本质是什么</span>
+            <span class="post-date" title="2019-11-27 19:45:49">2019/11/27</span>
+        </a>
+        
+        <a  class="OpenCV "
+           href="/2019/11/27/Opencv%E4%B8%AD%E7%9A%84x%E3%80%81y%E3%80%81col%E3%80%81row%E3%80%81height%E3%80%81width%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Opencv中的x、y、col、row、height、width对应关系">Opencv中的x、y、col、row、height、width对应关系</span>
+            <span class="post-date" title="2019-11-27 15:41:03">2019/11/27</span>
+        </a>
+        
+        <a  class="机器学习 "
+           href="/2019/11/26/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3/"
+           data-tag="线性回归"
+           data-author="" >
+            <span class="post-title" title="线性回归的通俗理解">线性回归的通俗理解</span>
+            <span class="post-date" title="2019-11-26 22:25:50">2019/11/26</span>
+        </a>
         
         <a  class="OpenCV "
            href="/2019/11/23/OpenCV%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%A1%A8%E7%A4%BA/"
@@ -237,7 +309,7 @@
         <article class="index">
             <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Past-and-Future"><span class="toc-text">Past and Future</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于本站"><span class="toc-text">关于本站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客平台"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Past-and-Future"><span class="toc-text">Past and Future</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于本站"><span class="toc-text">关于本站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鸣谢"><span class="toc-text">鸣谢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客平台"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -250,7 +322,8 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="Past-and-Future"><a href="#Past-and-Future" class="headerlink" title="Past and Future"></a>Past and Future</h2><p>研究生阶段将要开始了，迷茫的大学时代将要过去了，<strong>谨以此纪念大学4年的悠闲时光</strong><br>不定期更新关于研究生阶段的学习经验与心得</p>
+            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="Past-and-Future"><a href="#Past-and-Future" class="headerlink" title="Past and Future"></a>Past and Future</h2><p>研究生阶段将要开始了，迷茫的大学时代将要过去了，<strong>谨以此纪念大学4年的悠闲时光</strong> </p>
+<p>不定期更新关于研究生阶段的学习经验与心得</p>
 <ul>
 <li><strong>Machine learning</strong></li>
 <li><strong>deep learning</strong></li>
@@ -259,7 +332,7 @@
 <h2 id="关于本站"><a href="#关于本站" class="headerlink" title="关于本站"></a>关于本站</h2><p><strong>Zikun‘s blog</strong> 是王治坤的个人站。</p>
 <p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
 <p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<p>##鸣谢<br>感谢<strong>阿杰</strong>的主题</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p>感谢<strong>阿杰</strong>的主题</p>
 <h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 生成，部署在 <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank" rel="noopener">3-hexo</a> 已经在github上开源</p>
 <p>主要功能：</p>
 <ul>
@@ -343,7 +416,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#opencv',],
+            'data': ['#机器学习','#线性回归','#mathjax','#latex','#opencv',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
