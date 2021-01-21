@@ -6,16 +6,26 @@
   <meta name="keywords" content="">
   <meta name="description" content="Opencv中的x、y、col、row、height、width对应关系 | Zikun&#39;s blogs">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="友情提示，本文篇幅较长，可点击右上角的目录，跳转至你想快速到达的页面。 一、引言&amp;emsp;&amp;emsp;最近在学习机器学习，想用markdown记录一下自己的学习历程。无奈，其中的公式太多，只能用latex表示。（字丑，实在上不了台面） 二、推荐md编辑器&amp;emsp;&amp;emsp;强烈推荐vs code!!! 谁用这知道，太香了！而且插件丰富。我使用了 markdown preview enhanc">
-<meta name="keywords" content="mathjax,latex">
+<meta name="description" content="基于语义分割的目标上下文表示摘要在本文中，我们研究了语义分割中的上下文聚合问题。由于像素的标签是像素所属的对象的类别，我们提出了一种简单而有效的方法，即目标上下文表示，通过利用相应目标类别表示来表示像素的特征。首先，我们在分割标注集的监督下学习目标区域。然后，我们通过聚集位于目标区域中的像素表示来计算目标区域表示。最后，我们计算每个像素与每个目标区域之间的关系，并用目标上下文表示来增加每个像素的表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mathjax基本数学公式(latex公式)">
-<meta property="og:url" content="http:&#x2F;&#x2F;zikun97.github.io&#x2F;2019&#x2F;11&#x2F;30&#x2F;mathjax%E5%9F%BA%E6%9C%AC%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F-latex%E5%85%AC%E5%BC%8F&#x2F;index.html">
+<meta property="og:title" content="论文翻译及理解：Object Contextual Representations for Semantic Segmentation">
+<meta property="og:url" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/index.html">
 <meta property="og:site_name" content="Zikun&#39;s blogs">
-<meta property="og:description" content="友情提示，本文篇幅较长，可点击右上角的目录，跳转至你想快速到达的页面。 一、引言&amp;emsp;&amp;emsp;最近在学习机器学习，想用markdown记录一下自己的学习历程。无奈，其中的公式太多，只能用latex表示。（字丑，实在上不了台面） 二、推荐md编辑器&amp;emsp;&amp;emsp;强烈推荐vs code!!! 谁用这知道，太香了！而且插件丰富。我使用了 markdown preview enhanc">
-<meta property="og:locale" content="ch">
-<meta property="og:updated_time" content="2019-12-02T11:22:41.242Z">
+<meta property="og:description" content="基于语义分割的目标上下文表示摘要在本文中，我们研究了语义分割中的上下文聚合问题。由于像素的标签是像素所属的对象的类别，我们提出了一种简单而有效的方法，即目标上下文表示，通过利用相应目标类别表示来表示像素的特征。首先，我们在分割标注集的监督下学习目标区域。然后，我们通过聚集位于目标区域中的像素表示来计算目标区域表示。最后，我们计算每个像素与每个目标区域之间的关系，并用目标上下文表示来增加每个像素的表">
+<meta property="og:locale">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/1.png">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/2.png">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表1.png">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表2.png">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表3.png">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表4.png">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表5.png">
+<meta property="article:published_time" content="2021-01-15T08:47:34.000Z">
+<meta property="article:modified_time" content="2021-01-15T08:47:34.000Z">
+<meta property="article:author" content="Zikun">
+<meta property="article:tag" content="Segmentation">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/1.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -43,7 +53,7 @@
 
 <script src="/js/iconfont.js?v=1.0.1" ></script>
 
-</head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 <div style="display: none">
   <input class="theme_disqus_on" value="false">
   <input class="theme_preload_comment" value="false">
@@ -158,7 +168,15 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(5)</small></div></li>
+    <li><div class="all active">全部文章<small>(7)</small></div></li>
+    
+        
+            
+            <li><div data-rel="基础数学知识">基础数学知识<small>(2)</small></div>
+                
+            </li>
+            
+        
     
         
             
@@ -170,7 +188,7 @@
     
         
             
-            <li><div data-rel="基础数学知识">基础数学知识<small>(1)</small></div>
+            <li><div data-rel="OpenCV">OpenCV<small>(2)</small></div>
                 
             </li>
             
@@ -178,7 +196,7 @@
     
         
             
-            <li><div data-rel="OpenCV">OpenCV<small>(2)</small></div>
+            <li><div data-rel="Paper">Paper<small>(1)</small></div>
                 
             </li>
             
@@ -194,8 +212,8 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="5">
-<input type="hidden" id="yelog_site_word_count" value="4.4k">
+<input type="hidden" id="yelog_site_posts_number" value="7">
+<input type="hidden" id="yelog_site_word_count" value="11.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -229,14 +247,6 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a class="color5">机器学习</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">线性回归</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a class="color3">mathjax</a>
     </li>
     
@@ -245,7 +255,19 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a class="color5">机器学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">线性回归</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a class="color2">opencv</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">Segmentation</a>
     </li>
     
     <div class="clearfix"></div>
@@ -253,6 +275,22 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="Paper "
+           href="/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/"
+           data-tag="Segmentation"
+           data-author="" >
+            <span class="post-title" title="论文翻译及理解：Object Contextual Representations for Semantic Segmentation">论文翻译及理解：Object Contextual Representations for Semantic Segmentation</span>
+            <span class="post-date" title="2021-01-15 16:47:34">2021/01/15</span>
+        </a>
+        
+        <a  class="基础数学知识 "
+           href="/2019/12/02/mathjax%E8%BF%9B%E9%98%B6/"
+           data-tag="mathjax,latex"
+           data-author="" >
+            <span class="post-title" title="mathjax进阶">mathjax进阶</span>
+            <span class="post-date" title="2019-12-02 09:44:29">2019/12/02</span>
+        </a>
         
         <a  class="基础数学知识 "
            href="/2019/11/30/mathjax%E5%9F%BA%E6%9C%AC%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F-latex%E5%85%AC%E5%BC%8F/"
@@ -324,7 +362,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-30 14:10:11'>2019-11-27 15:41</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-27 15:41:03'>2019-11-27 15:41</time>
         
     </div>
     <div class="article-meta">
@@ -359,7 +397,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本关系"><span class="toc-text">基本关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示意图"><span class="toc-text">示意图</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%85%B3%E7%B3%BB"><span class="toc-text">基本关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="toc-text">示意图</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -398,10 +436,10 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">44</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="Zikun">Zikun</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-27, 15:41:03</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-30, 14:10:11</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-27, 15:41:03</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/27/Opencv%E4%B8%AD%E7%9A%84x%E3%80%81y%E3%80%81col%E3%80%81row%E3%80%81height%E3%80%81width%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB/" title="Opencv中的x、y、col、row、height、width对应关系">http://zikun97.github.io/2019/11/27/Opencv%E4%B8%AD%E7%9A%84x%E3%80%81y%E3%80%81col%E3%80%81row%E3%80%81height%E3%80%81width%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB/</a>
     <p>
-        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
 </div>
 
@@ -522,7 +560,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#机器学习','#线性回归','#mathjax','#latex','#opencv',],
+            'data': ['#mathjax','#latex','#机器学习','#线性回归','#opencv','#Segmentation',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

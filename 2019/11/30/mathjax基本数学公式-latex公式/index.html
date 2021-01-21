@@ -6,16 +6,26 @@
   <meta name="keywords" content=" mathjax , latex ">
   <meta name="description" content="mathjax基本数学公式(latex公式) | Zikun&#39;s blogs">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="友情提示，本文篇幅较长，可点击右上角的目录，跳转至你想快速到达的页面。 一、引言&amp;emsp;&amp;emsp;最近在学习机器学习，想用markdown记录一下自己的学习历程。无奈，其中的公式太多，只能用latex表示。（字丑，实在上不了台面） 二、推荐md编辑器&amp;emsp;&amp;emsp;强烈推荐vs code!!! 谁用这知道，太香了！而且插件丰富。我使用了 markdown preview enhanc">
-<meta name="keywords" content="mathjax,latex">
+<meta name="description" content="基于语义分割的目标上下文表示摘要在本文中，我们研究了语义分割中的上下文聚合问题。由于像素的标签是像素所属的对象的类别，我们提出了一种简单而有效的方法，即目标上下文表示，通过利用相应目标类别表示来表示像素的特征。首先，我们在分割标注集的监督下学习目标区域。然后，我们通过聚集位于目标区域中的像素表示来计算目标区域表示。最后，我们计算每个像素与每个目标区域之间的关系，并用目标上下文表示来增加每个像素的表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mathjax基本数学公式(latex公式)">
-<meta property="og:url" content="http:&#x2F;&#x2F;zikun97.github.io&#x2F;2019&#x2F;11&#x2F;30&#x2F;mathjax%E5%9F%BA%E6%9C%AC%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F-latex%E5%85%AC%E5%BC%8F&#x2F;index.html">
+<meta property="og:title" content="论文翻译及理解：Object Contextual Representations for Semantic Segmentation">
+<meta property="og:url" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/index.html">
 <meta property="og:site_name" content="Zikun&#39;s blogs">
-<meta property="og:description" content="友情提示，本文篇幅较长，可点击右上角的目录，跳转至你想快速到达的页面。 一、引言&amp;emsp;&amp;emsp;最近在学习机器学习，想用markdown记录一下自己的学习历程。无奈，其中的公式太多，只能用latex表示。（字丑，实在上不了台面） 二、推荐md编辑器&amp;emsp;&amp;emsp;强烈推荐vs code!!! 谁用这知道，太香了！而且插件丰富。我使用了 markdown preview enhanc">
-<meta property="og:locale" content="ch">
-<meta property="og:updated_time" content="2019-12-02T11:22:41.242Z">
+<meta property="og:description" content="基于语义分割的目标上下文表示摘要在本文中，我们研究了语义分割中的上下文聚合问题。由于像素的标签是像素所属的对象的类别，我们提出了一种简单而有效的方法，即目标上下文表示，通过利用相应目标类别表示来表示像素的特征。首先，我们在分割标注集的监督下学习目标区域。然后，我们通过聚集位于目标区域中的像素表示来计算目标区域表示。最后，我们计算每个像素与每个目标区域之间的关系，并用目标上下文表示来增加每个像素的表">
+<meta property="og:locale">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/1.png">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/2.png">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表1.png">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表2.png">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表3.png">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表4.png">
+<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表5.png">
+<meta property="article:published_time" content="2021-01-15T08:47:34.000Z">
+<meta property="article:modified_time" content="2021-01-15T08:47:34.000Z">
+<meta property="article:author" content="Zikun">
+<meta property="article:tag" content="Segmentation">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/1.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -43,7 +53,7 @@
 
 <script src="/js/iconfont.js?v=1.0.1" ></script>
 
-</head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 <div style="display: none">
   <input class="theme_disqus_on" value="false">
   <input class="theme_preload_comment" value="false">
@@ -158,7 +168,15 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(5)</small></div></li>
+    <li><div class="all active">全部文章<small>(7)</small></div></li>
+    
+        
+            
+            <li><div data-rel="基础数学知识">基础数学知识<small>(2)</small></div>
+                
+            </li>
+            
+        
     
         
             
@@ -170,7 +188,7 @@
     
         
             
-            <li><div data-rel="基础数学知识">基础数学知识<small>(1)</small></div>
+            <li><div data-rel="OpenCV">OpenCV<small>(2)</small></div>
                 
             </li>
             
@@ -178,7 +196,7 @@
     
         
             
-            <li><div data-rel="OpenCV">OpenCV<small>(2)</small></div>
+            <li><div data-rel="Paper">Paper<small>(1)</small></div>
                 
             </li>
             
@@ -194,8 +212,8 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="5">
-<input type="hidden" id="yelog_site_word_count" value="4.4k">
+<input type="hidden" id="yelog_site_posts_number" value="7">
+<input type="hidden" id="yelog_site_word_count" value="11.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -229,14 +247,6 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a class="color5">机器学习</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">线性回归</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a class="color3">mathjax</a>
     </li>
     
@@ -245,7 +255,19 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a class="color5">机器学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">线性回归</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a class="color2">opencv</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">Segmentation</a>
     </li>
     
     <div class="clearfix"></div>
@@ -253,6 +275,22 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="Paper "
+           href="/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/"
+           data-tag="Segmentation"
+           data-author="" >
+            <span class="post-title" title="论文翻译及理解：Object Contextual Representations for Semantic Segmentation">论文翻译及理解：Object Contextual Representations for Semantic Segmentation</span>
+            <span class="post-date" title="2021-01-15 16:47:34">2021/01/15</span>
+        </a>
+        
+        <a  class="基础数学知识 "
+           href="/2019/12/02/mathjax%E8%BF%9B%E9%98%B6/"
+           data-tag="mathjax,latex"
+           data-author="" >
+            <span class="post-title" title="mathjax进阶">mathjax进阶</span>
+            <span class="post-date" title="2019-12-02 09:44:29">2019/12/02</span>
+        </a>
         
         <a  class="基础数学知识 "
            href="/2019/11/30/mathjax%E5%9F%BA%E6%9C%AC%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F-latex%E5%85%AC%E5%BC%8F/"
@@ -332,7 +370,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-12-02 19:22:41'>2019-11-30 14:05</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-30 14:05:32'>2019-11-30 14:05</time>
         
     </div>
     <div class="article-meta">
@@ -367,7 +405,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、引言"><span class="toc-text">一、引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、推荐md编辑器"><span class="toc-text">二、推荐md编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、语法"><span class="toc-text">三、语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）显示方式"><span class="toc-text">（一）显示方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-紧密型"><span class="toc-text">1.紧密型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-上下环绕型"><span class="toc-text">2.上下环绕型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（二）希腊字母的显示"><span class="toc-text">（二）希腊字母的显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（三）上标和下标"><span class="toc-text">（三）上标和下标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#上标"><span class="toc-text">上标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下标"><span class="toc-text">下标</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（四）分组"><span class="toc-text">（四）分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（五）括号"><span class="toc-text">（五）括号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自适应大小的括号"><span class="toc-text">自适应大小的括号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更多尺寸的括号"><span class="toc-text">更多尺寸的括号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（六）求和"><span class="toc-text">（六）求和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（七）积分"><span class="toc-text">（七）积分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（八）类似的函数"><span class="toc-text">（八）类似的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（九）分式"><span class="toc-text">（九）分式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方式一"><span class="toc-text">方式一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方式二"><span class="toc-text">方式二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方式三"><span class="toc-text">方式三</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（十）字型（用到较少，可跳过）"><span class="toc-text">（十）字型（用到较少，可跳过）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#blackborad-bold（黑板粗体）"><span class="toc-text">blackborad bold（黑板粗体）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#boldface（黑体）"><span class="toc-text">boldface（黑体）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#italics-斜体字"><span class="toc-text">italics(斜体字)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#boldfaced-italics-粗体斜体"><span class="toc-text">boldfaced italics(粗体斜体)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#typewriter-打印机字体"><span class="toc-text">typewriter(打印机字体)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#roman-font-罗马字体"><span class="toc-text">roman font(罗马字体)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sans-serif"><span class="toc-text">sans-serif</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#calligraphic-书法字体"><span class="toc-text">calligraphic(书法字体)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sript-letters-手写体字母"><span class="toc-text">sript letters(手写体字母)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fraktur-哥特"><span class="toc-text">Fraktur(哥特)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（十一）平方根和立方根"><span class="toc-text">（十一）平方根和立方根</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#平方根"><span class="toc-text">平方根</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#立方根"><span class="toc-text">立方根</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#n次方根"><span class="toc-text">n次方根</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（十二）特殊函数"><span class="toc-text">（十二）特殊函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#组合"><span class="toc-text">组合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（十三）特殊符号"><span class="toc-text">（十三）特殊符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（十四）空格"><span class="toc-text">（十四）空格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单个空格"><span class="toc-text">单个空格( \\; )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四个空格-quad"><span class="toc-text">四个空格( \quad )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#八个空格-qquad"><span class="toc-text">八个空格( \qquad )</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重音和变音符号"><span class="toc-text">重音和变音符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（十五）MathJax输出特殊符号"><span class="toc-text">（十五）MathJax输出特殊符号</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%BC%95%E8%A8%80"><span class="toc-text">一、引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8E%A8%E8%8D%90md%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">二、推荐md编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%AF%AD%E6%B3%95"><span class="toc-text">三、语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E6%98%BE%E7%A4%BA%E6%96%B9%E5%BC%8F"><span class="toc-text">（一）显示方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%B4%A7%E5%AF%86%E5%9E%8B"><span class="toc-text">1.紧密型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%8A%E4%B8%8B%E7%8E%AF%E7%BB%95%E5%9E%8B"><span class="toc-text">2.上下环绕型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D%E7%9A%84%E6%98%BE%E7%A4%BA"><span class="toc-text">（二）希腊字母的显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E4%B8%8A%E6%A0%87%E5%92%8C%E4%B8%8B%E6%A0%87"><span class="toc-text">（三）上标和下标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8A%E6%A0%87"><span class="toc-text">上标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E6%A0%87"><span class="toc-text">下标</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%9B%9B%EF%BC%89%E5%88%86%E7%BB%84"><span class="toc-text">（四）分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%94%EF%BC%89%E6%8B%AC%E5%8F%B7"><span class="toc-text">（五）括号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E5%A4%A7%E5%B0%8F%E7%9A%84%E6%8B%AC%E5%8F%B7"><span class="toc-text">自适应大小的括号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E5%B0%BA%E5%AF%B8%E7%9A%84%E6%8B%AC%E5%8F%B7"><span class="toc-text">更多尺寸的括号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%AD%EF%BC%89%E6%B1%82%E5%92%8C"><span class="toc-text">（六）求和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%83%EF%BC%89%E7%A7%AF%E5%88%86"><span class="toc-text">（七）积分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%AB%EF%BC%89%E7%B1%BB%E4%BC%BC%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-text">（八）类似的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B9%9D%EF%BC%89%E5%88%86%E5%BC%8F"><span class="toc-text">（九）分式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80"><span class="toc-text">方式一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C"><span class="toc-text">方式二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%89"><span class="toc-text">方式三</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%8D%81%EF%BC%89%E5%AD%97%E5%9E%8B%EF%BC%88%E7%94%A8%E5%88%B0%E8%BE%83%E5%B0%91%EF%BC%8C%E5%8F%AF%E8%B7%B3%E8%BF%87%EF%BC%89"><span class="toc-text">（十）字型（用到较少，可跳过）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#blackborad-bold%EF%BC%88%E9%BB%91%E6%9D%BF%E7%B2%97%E4%BD%93%EF%BC%89"><span class="toc-text">blackborad bold（黑板粗体）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#boldface%EF%BC%88%E9%BB%91%E4%BD%93%EF%BC%89"><span class="toc-text">boldface（黑体）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#italics-%E6%96%9C%E4%BD%93%E5%AD%97"><span class="toc-text">italics(斜体字)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#boldfaced-italics-%E7%B2%97%E4%BD%93%E6%96%9C%E4%BD%93"><span class="toc-text">boldfaced italics(粗体斜体)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#typewriter-%E6%89%93%E5%8D%B0%E6%9C%BA%E5%AD%97%E4%BD%93"><span class="toc-text">typewriter(打印机字体)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#roman-font-%E7%BD%97%E9%A9%AC%E5%AD%97%E4%BD%93"><span class="toc-text">roman font(罗马字体)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sans-serif"><span class="toc-text">sans-serif</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#calligraphic-%E4%B9%A6%E6%B3%95%E5%AD%97%E4%BD%93"><span class="toc-text">calligraphic(书法字体)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sript-letters-%E6%89%8B%E5%86%99%E4%BD%93%E5%AD%97%E6%AF%8D"><span class="toc-text">sript letters(手写体字母)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fraktur-%E5%93%A5%E7%89%B9"><span class="toc-text">Fraktur(哥特)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%B9%B3%E6%96%B9%E6%A0%B9%E5%92%8C%E7%AB%8B%E6%96%B9%E6%A0%B9"><span class="toc-text">（十一）平方根和立方根</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B3%E6%96%B9%E6%A0%B9"><span class="toc-text">平方根</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%8B%E6%96%B9%E6%A0%B9"><span class="toc-text">立方根</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#n%E6%AC%A1%E6%96%B9%E6%A0%B9"><span class="toc-text">n次方根</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B0"><span class="toc-text">（十二）特殊函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E5%90%88"><span class="toc-text">组合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7"><span class="toc-text">（十三）特殊符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E7%A9%BA%E6%A0%BC"><span class="toc-text">（十四）空格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%B8%AA%E7%A9%BA%E6%A0%BC"><span class="toc-text">单个空格( \\; )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E4%B8%AA%E7%A9%BA%E6%A0%BC-quad"><span class="toc-text">四个空格( \quad )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AB%E4%B8%AA%E7%A9%BA%E6%A0%BC-qquad"><span class="toc-text">八个空格( \qquad )</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E9%9F%B3%E5%92%8C%E5%8F%98%E9%9F%B3%E7%AC%A6%E5%8F%B7"><span class="toc-text">重音和变音符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89MathJax%E8%BE%93%E5%87%BA%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7"><span class="toc-text">（十五）MathJax输出特殊符号</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -388,30 +426,25 @@
 <h2 id="二、推荐md编辑器"><a href="#二、推荐md编辑器" class="headerlink" title="二、推荐md编辑器"></a><strong>二、推荐md编辑器</strong></h2><p>&emsp;&emsp;强烈推荐<strong>vs code!!!</strong> 谁用这知道，太香了！而且插件丰富。我使用了 <strong>markdown preview enhanced</strong> 插件，就直接可以支持数学公式实时预览啦！</p>
 <h2 id="三、语法"><a href="#三、语法" class="headerlink" title="三、语法"></a><strong>三、语法</strong></h2><p>&emsp;&emsp;在markdown中，是使用mathjax来实现对latex数学公式的支持。</p>
 <h3 id="（一）显示方式"><a href="#（一）显示方式" class="headerlink" title="（一）显示方式"></a><strong>（一）显示方式</strong></h3><p>&emsp;&emsp;这个有点像office word中的图片插入，只不过插入方式只有两种，<strong>紧密型</strong> 和 <strong>上下环绕型</strong>。</p>
-<h4 id="1-紧密型"><a href="#1-紧密型" class="headerlink" title="1.紧密型"></a><strong>1.紧密型</strong></h4><p>&emsp;&emsp;顾名思义，紧密型的四周都是文字。像普通文本一样显示的段落中。语法如下；</p>
-<blockquote>
-<p><strong>\$…\$</strong>，其中“…”表示数学公式。</p>
-</blockquote>
+<h4 id="1-紧密型"><a href="#1-紧密型" class="headerlink" title="1.紧密型"></a><strong>1.紧密型</strong></h4><p>&emsp;&emsp;顾名思义，紧密型的四周都是文字。像普通文本一样显示的段落中。语法如下；<br><code>$...$</code>，其中“…”表示数学公式。</p>
 <p>例子：<br>&emsp;&emsp;如果输入</p>
 <blockquote>
-<p><strong>求和函数——\$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t\$的作用是</strong></p>
+<p><strong>求和函数——$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$的作用是</strong></p>
 </blockquote>
 <p>将会显示</p>
 <blockquote>
 <p><strong>求和函数——$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$的作用是</strong></p>
 </blockquote>
-<p><strong>后面演示内容将默认含有\$…\$!!!</strong></p>
+<p><strong>后面演示内容将默认含有$…$!!!</strong></p>
 <h4 id="2-上下环绕型"><a href="#2-上下环绕型" class="headerlink" title="2.上下环绕型"></a><strong>2.上下环绕型</strong></h4><p>&emsp;&emsp;上下环绕型——使用单独一行来显示数学公式。语法如下：</p>
-<blockquote>
-<p><strong>\$\$…\$\$</strong>，其中“…”表示数学公式</p>
-</blockquote>
+<p><code>$$...$$</code>，其中“…”表示数学公式</p>
 <p>例子：<br>&emsp;&emsp;如果输入</p>
 <blockquote>
-<p><strong>求和函数——\$\$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t\$\$的作用是</strong></p>
+<p><strong>求和函数——$$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$$的作用是</strong></p>
 </blockquote>
 <p>将会显示</p>
 <blockquote>
-<p><strong>求和函数——$$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$$的作用是</strong></p>
+<p><strong>求和函数——<script type="math/tex">\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t</script>的作用是</strong></p>
 </blockquote>
 <h3 id="（二）希腊字母的显示"><a href="#（二）希腊字母的显示" class="headerlink" title="（二）希腊字母的显示"></a><strong>（二）希腊字母的显示</strong></h3><p>&emsp;&emsp;以下都是小写的希腊字母，如果想编辑大写的希腊字母，<strong>首字母大写</strong>即可。<br>例子：</p>
 <p>代码如下：</p>
@@ -422,88 +455,92 @@
 <blockquote>
 <p>这是小写字母 <strong>$\alpha$</strong> ，这是大写字母 <strong>$\Lambda$</strong></p>
 </blockquote>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">希腊字母</th>
-<th align="center">表示方式</th>
-<th align="center">希腊字母</th>
-<th align="center">表示方式</th>
+<th style="text-align:center">希腊字母</th>
+<th style="text-align:center">表示方式</th>
+<th style="text-align:center">希腊字母</th>
+<th style="text-align:center">表示方式</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">$\alpha$</td>
-<td align="center">\alpha</td>
-<td align="center">$\nu$</td>
-<td align="center">\nu</td>
+<tbody>
+<tr>
+<td style="text-align:center">$\alpha$</td>
+<td style="text-align:center">\alpha</td>
+<td style="text-align:center">$\nu$</td>
+<td style="text-align:center">\nu</td>
 </tr>
 <tr>
-<td align="center">$\beta$</td>
-<td align="center">\beta</td>
-<td align="center">$\xi$</td>
-<td align="center">\xi</td>
+<td style="text-align:center">$\beta$</td>
+<td style="text-align:center">\beta</td>
+<td style="text-align:center">$\xi$</td>
+<td style="text-align:center">\xi</td>
 </tr>
 <tr>
-<td align="center">$\gamma$</td>
-<td align="center">\gamma</td>
-<td align="center">$\pi$</td>
-<td align="center">\pi</td>
+<td style="text-align:center">$\gamma$</td>
+<td style="text-align:center">\gamma</td>
+<td style="text-align:center">$\pi$</td>
+<td style="text-align:center">\pi</td>
 </tr>
 <tr>
-<td align="center">$\delta$</td>
-<td align="center">\delta</td>
-<td align="center">$\rho$</td>
-<td align="center">\rho</td>
+<td style="text-align:center">$\delta$</td>
+<td style="text-align:center">\delta</td>
+<td style="text-align:center">$\rho$</td>
+<td style="text-align:center">\rho</td>
 </tr>
 <tr>
-<td align="center">$\epsilon$</td>
-<td align="center">\epsilon</td>
-<td align="center">$\sigma$</td>
-<td align="center">\sigma</td>
+<td style="text-align:center">$\epsilon$</td>
+<td style="text-align:center">\epsilon</td>
+<td style="text-align:center">$\sigma$</td>
+<td style="text-align:center">\sigma</td>
 </tr>
 <tr>
-<td align="center">$\zeta$</td>
-<td align="center">\zeta</td>
-<td align="center">$\tau$</td>
-<td align="center">\tau</td>
+<td style="text-align:center">$\zeta$</td>
+<td style="text-align:center">\zeta</td>
+<td style="text-align:center">$\tau$</td>
+<td style="text-align:center">\tau</td>
 </tr>
 <tr>
-<td align="center">$\eta$</td>
-<td align="center">\eta</td>
-<td align="center">$\upsilon$</td>
-<td align="center">\upxilon</td>
+<td style="text-align:center">$\eta$</td>
+<td style="text-align:center">\eta</td>
+<td style="text-align:center">$\upsilon$</td>
+<td style="text-align:center">\upxilon</td>
 </tr>
 <tr>
-<td align="center">$\theta$</td>
-<td align="center">\theta</td>
-<td align="center">$\phi$</td>
-<td align="center">\phi</td>
+<td style="text-align:center">$\theta$</td>
+<td style="text-align:center">\theta</td>
+<td style="text-align:center">$\phi$</td>
+<td style="text-align:center">\phi</td>
 </tr>
 <tr>
-<td align="center">$\iota$</td>
-<td align="center">\iota</td>
-<td align="center">$\chi$</td>
-<td align="center">\chi</td>
+<td style="text-align:center">$\iota$</td>
+<td style="text-align:center">\iota</td>
+<td style="text-align:center">$\chi$</td>
+<td style="text-align:center">\chi</td>
 </tr>
 <tr>
-<td align="center">$\kappa$</td>
-<td align="center">\kappa</td>
-<td align="center">$\psi$</td>
-<td align="center">\psi</td>
+<td style="text-align:center">$\kappa$</td>
+<td style="text-align:center">\kappa</td>
+<td style="text-align:center">$\psi$</td>
+<td style="text-align:center">\psi</td>
 </tr>
 <tr>
-<td align="center">$\lambda$</td>
-<td align="center">\lambda</td>
-<td align="center">$\omega$</td>
-<td align="center">\omega</td>
+<td style="text-align:center">$\lambda$</td>
+<td style="text-align:center">\lambda</td>
+<td style="text-align:center">$\omega$</td>
+<td style="text-align:center">\omega</td>
 </tr>
 <tr>
-<td align="center">$\mu$</td>
-<td align="center">\mu</td>
-<td align="center">&emsp;</td>
-<td align="center">&emsp;</td>
+<td style="text-align:center">$\mu$</td>
+<td style="text-align:center">\mu</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">&emsp;</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="（三）上标和下标"><a href="#（三）上标和下标" class="headerlink" title="（三）上标和下标"></a><strong>（三）上标和下标</strong></h3><h4 id="上标"><a href="#上标" class="headerlink" title="上标"></a><strong>上标</strong></h4><p>&emsp;&emsp;上标使用 <strong>“\^”</strong> 来表示。<br>代码：</p>
 <blockquote>
 <p>2^3</p>
@@ -537,30 +574,35 @@
 <p>$X^{y^3}$ &emsp; $X^{Y^{Z_3}}$</p>
 </blockquote>
 <p><em>tips：“ <strong>{}</strong> ”可以 <strong>多层嵌套</strong> 哦。</em></p>
-<h3 id="（五）括号"><a href="#（五）括号" class="headerlink" title="（五）括号"></a><strong>（五）括号</strong></h3><table>
+<h3 id="（五）括号"><a href="#（五）括号" class="headerlink" title="（五）括号"></a><strong>（五）括号</strong></h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="center">括号类型</th>
-<th align="center">表达方式(默认省略“\$..\$”)</th>
+<th style="text-align:center">括号类型</th>
+<th style="text-align:center">表达方式(默认省略“$..$”)</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">$()$</td>
-<td align="center">()</td>
+<tbody>
+<tr>
+<td style="text-align:center">$()$</td>
+<td style="text-align:center">()</td>
 </tr>
 <tr>
-<td align="center">$[]$</td>
-<td align="center">[]</td>
+<td style="text-align:center">$[]$</td>
+<td style="text-align:center">[]</td>
 </tr>
 <tr>
-<td align="center">$\{ \}$</td>
-<td align="center">\{ \}</td>
+<td style="text-align:center">$\{ \}$</td>
+<td style="text-align:center">\{ \}</td>
 </tr>
 <tr>
-<td align="center">$\langle \rangle$</td>
-<td align="center">\langle \rangle</td>
+<td style="text-align:center">$\langle \rangle$</td>
+<td style="text-align:center">\langle \rangle</td>
+<td>0</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>为什么花括号“{ }”要使用“\”呢？其实原因上面已经提到了，“{}”在latex中起 <strong>分组</strong> 的作用，要和运算符区别开。</p>
 <h4 id="自适应大小的括号"><a href="#自适应大小的括号" class="headerlink" title="自适应大小的括号"></a><strong>自适应大小的括号</strong></h4><p>&emsp;&emsp;直接输入的括号的话，括号的大小是固定的。对于复杂的公式，如分式等，括号的大小。这时候就需要可以改变大小的括号了。</p>
 <p>例子：(仔细观察，两个数学表达式的大小有一些不同)</p>
@@ -665,320 +707,328 @@
 <p>{n+1 \choose 2k} &emsp; ${n+1 \choose 2k}$</p>
 <p>\binom{n+1}{2k} &emsp; $\binom{n+1}{2k}$</p>
 </blockquote>
-<h3 id="（十三）特殊符号"><a href="#（十三）特殊符号" class="headerlink" title="（十三）特殊符号"></a><strong>（十三）特殊符号</strong></h3><table>
+<h3 id="（十三）特殊符号"><a href="#（十三）特殊符号" class="headerlink" title="（十三）特殊符号"></a><strong>（十三）特殊符号</strong></h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="center">符号</th>
-<th align="center">表达方式</th>
-<th align="center">&emsp;</th>
-<th align="center">符号</th>
-<th align="center">表达方式</th>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">表达方式</th>
+<th style="text-align:center">&emsp;</th>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">表达方式</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">$\lt$</td>
-<td align="center">\lt</td>
-<td align="center">&emsp;</td>
-<td align="center">$\gt$</td>
-<td align="center">\gt</td>
+<tbody>
+<tr>
+<td style="text-align:center">$\lt$</td>
+<td style="text-align:center">\lt</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\gt$</td>
+<td style="text-align:center">\gt</td>
 </tr>
 <tr>
-<td align="center">$\le$</td>
-<td align="center">\le</td>
-<td align="center">&emsp;</td>
-<td align="center">$\leq$</td>
-<td align="center">\leq</td>
+<td style="text-align:center">$\le$</td>
+<td style="text-align:center">\le</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\leq$</td>
+<td style="text-align:center">\leq</td>
 </tr>
 <tr>
-<td align="center">$\leqq$</td>
-<td align="center">\leqq</td>
-<td align="center">&emsp;</td>
-<td align="center">$\leqslant$</td>
-<td align="center">\leqslant</td>
+<td style="text-align:center">$\leqq$</td>
+<td style="text-align:center">\leqq</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\leqslant$</td>
+<td style="text-align:center">\leqslant</td>
 </tr>
 <tr>
-<td align="center">$\ge$</td>
-<td align="center">\ge</td>
-<td align="center">&emsp;</td>
-<td align="center">$\geq$</td>
-<td align="center">\geq</td>
+<td style="text-align:center">$\ge$</td>
+<td style="text-align:center">\ge</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\geq$</td>
+<td style="text-align:center">\geq</td>
 </tr>
 <tr>
-<td align="center">$\geqq$</td>
-<td align="center">\geqq</td>
-<td align="center">&emsp;</td>
-<td align="center">$\geqslant$</td>
-<td align="center">\geqslant</td>
+<td style="text-align:center">$\geqq$</td>
+<td style="text-align:center">\geqq</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\geqslant$</td>
+<td style="text-align:center">\geqslant</td>
 </tr>
 <tr>
-<td align="center">$\neq$</td>
-<td align="center">\neq</td>
-<td align="center">&emsp;</td>
-<td align="center">$\times$</td>
-<td align="center">\times</td>
+<td style="text-align:center">$\neq$</td>
+<td style="text-align:center">\neq</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\times$</td>
+<td style="text-align:center">\times</td>
 </tr>
 <tr>
-<td align="center">$\div$</td>
-<td align="center">\div</td>
-<td align="center">&emsp;</td>
-<td align="center">$\pm$</td>
-<td align="center">\pm</td>
+<td style="text-align:center">$\div$</td>
+<td style="text-align:center">\div</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\pm$</td>
+<td style="text-align:center">\pm</td>
 </tr>
 <tr>
-<td align="center">$\mp$</td>
-<td align="center">\mp</td>
-<td align="center">&emsp;</td>
-<td align="center">$\cdot$</td>
-<td align="center">\cdot</td>
+<td style="text-align:center">$\mp$</td>
+<td style="text-align:center">\mp</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\cdot$</td>
+<td style="text-align:center">\cdot</td>
 </tr>
 <tr>
-<td align="center">$\cup$</td>
-<td align="center">\cup</td>
-<td align="center">&emsp;</td>
-<td align="center">$\cap$</td>
-<td align="center">\cap</td>
+<td style="text-align:center">$\cup$</td>
+<td style="text-align:center">\cup</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\cap$</td>
+<td style="text-align:center">\cap</td>
 </tr>
 <tr>
-<td align="center">$\setminus$</td>
-<td align="center">\setminus</td>
-<td align="center">&emsp;</td>
-<td align="center">$\subset$</td>
-<td align="center">\subset</td>
+<td style="text-align:center">$\setminus$</td>
+<td style="text-align:center">\setminus</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\subset$</td>
+<td style="text-align:center">\subset</td>
 </tr>
 <tr>
-<td align="center">$\subseteq$</td>
-<td align="center">\subseteq</td>
-<td align="center">&emsp;</td>
-<td align="center">$\subsetneq$</td>
-<td align="center">\subsetneq</td>
+<td style="text-align:center">$\subseteq$</td>
+<td style="text-align:center">\subseteq</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\subsetneq$</td>
+<td style="text-align:center">\subsetneq</td>
 </tr>
 <tr>
-<td align="center">$\subsetneqq$</td>
-<td align="center">\subsetnneq</td>
-<td align="center">&emsp;</td>
-<td align="center">$\in$</td>
-<td align="center">\in</td>
+<td style="text-align:center">$\subsetneqq$</td>
+<td style="text-align:center">\subsetnneq</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\in$</td>
+<td style="text-align:center">\in</td>
 </tr>
 <tr>
-<td align="center">$\notin$</td>
-<td align="center">\notin</td>
-<td align="center">&emsp;</td>
-<td align="center">$\emptyset$</td>
-<td align="center">\empeyset</td>
+<td style="text-align:center">$\notin$</td>
+<td style="text-align:center">\notin</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\emptyset$</td>
+<td style="text-align:center">\empeyset</td>
 </tr>
 <tr>
-<td align="center">$\varnothing$</td>
-<td align="center">\varnothing</td>
-<td align="center">&emsp;</td>
-<td align="center">$\to$</td>
-<td align="center">\to</td>
+<td style="text-align:center">$\varnothing$</td>
+<td style="text-align:center">\varnothing</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\to$</td>
+<td style="text-align:center">\to</td>
 </tr>
 <tr>
-<td align="center">$\rightarrow$</td>
-<td align="center">\rightarrow</td>
-<td align="center">&emsp;</td>
-<td align="center">$\leftarrow$</td>
-<td align="center">\leftarrow</td>
+<td style="text-align:center">$\rightarrow$</td>
+<td style="text-align:center">\rightarrow</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\leftarrow$</td>
+<td style="text-align:center">\leftarrow</td>
 </tr>
 <tr>
-<td align="center">$\Rightarrow$</td>
-<td align="center">\Rightarrow</td>
-<td align="center">&emsp;</td>
-<td align="center">$\Leftarrow$</td>
-<td align="center">\Leftarrow</td>
+<td style="text-align:center">$\Rightarrow$</td>
+<td style="text-align:center">\Rightarrow</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\Leftarrow$</td>
+<td style="text-align:center">\Leftarrow</td>
 </tr>
 <tr>
-<td align="center">$\mapsto$</td>
-<td align="center">\mapsto</td>
-<td align="center">&emsp;</td>
-<td align="center">$\land$</td>
-<td align="center">\land</td>
+<td style="text-align:center">$\mapsto$</td>
+<td style="text-align:center">\mapsto</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\land$</td>
+<td style="text-align:center">\land</td>
 </tr>
 <tr>
-<td align="center">$\lor$</td>
-<td align="center">\lor</td>
-<td align="center">&emsp;</td>
-<td align="center">$\lnot$</td>
-<td align="center">\lnot</td>
+<td style="text-align:center">$\lor$</td>
+<td style="text-align:center">\lor</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\lnot$</td>
+<td style="text-align:center">\lnot</td>
 </tr>
 <tr>
-<td align="center">$\forall$</td>
-<td align="center">\forall</td>
-<td align="center">&emsp;</td>
-<td align="center">$\exists$</td>
-<td align="center">\exists</td>
+<td style="text-align:center">$\forall$</td>
+<td style="text-align:center">\forall</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\exists$</td>
+<td style="text-align:center">\exists</td>
 </tr>
 <tr>
-<td align="center">$\top$</td>
-<td align="center">\top</td>
-<td align="center">&emsp;</td>
-<td align="center">$\bot$</td>
-<td align="center">\bot</td>
+<td style="text-align:center">$\top$</td>
+<td style="text-align:center">\top</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\bot$</td>
+<td style="text-align:center">\bot</td>
 </tr>
 <tr>
-<td align="center">$\vdash$</td>
-<td align="center">\vdash</td>
-<td align="center">&emsp;</td>
-<td align="center">$\vDash$</td>
-<td align="center">\vDash</td>
+<td style="text-align:center">$\vdash$</td>
+<td style="text-align:center">\vdash</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\vDash$</td>
+<td style="text-align:center">\vDash</td>
 </tr>
 <tr>
-<td align="center">$\star$</td>
-<td align="center">\star</td>
-<td align="center">&emsp;</td>
-<td align="center">$\ast$</td>
-<td align="center">\ast</td>
+<td style="text-align:center">$\star$</td>
+<td style="text-align:center">\star</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\ast$</td>
+<td style="text-align:center">\ast</td>
 </tr>
 <tr>
-<td align="center">$\oplus$</td>
-<td align="center">\oplus</td>
-<td align="center">&emsp;</td>
-<td align="center">$\circ$</td>
-<td align="center">\circ</td>
+<td style="text-align:center">$\oplus$</td>
+<td style="text-align:center">\oplus</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\circ$</td>
+<td style="text-align:center">\circ</td>
 </tr>
 <tr>
-<td align="center">$\bullet$</td>
-<td align="center">\bullet</td>
-<td align="center">&emsp;</td>
-<td align="center">$\approx$</td>
-<td align="center">\approx</td>
+<td style="text-align:center">$\bullet$</td>
+<td style="text-align:center">\bullet</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\approx$</td>
+<td style="text-align:center">\approx</td>
 </tr>
 <tr>
-<td align="center">$\sim$</td>
-<td align="center">\sim</td>
-<td align="center">&emsp;</td>
-<td align="center">$\simeq$</td>
-<td align="center">\simeq</td>
+<td style="text-align:center">$\sim$</td>
+<td style="text-align:center">\sim</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\simeq$</td>
+<td style="text-align:center">\simeq</td>
 </tr>
 <tr>
-<td align="center">$\cong$</td>
-<td align="center">\cong</td>
-<td align="center">&emsp;</td>
-<td align="center">$\equiv$</td>
-<td align="center">\equiv</td>
+<td style="text-align:center">$\cong$</td>
+<td style="text-align:center">\cong</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\equiv$</td>
+<td style="text-align:center">\equiv</td>
 </tr>
 <tr>
-<td align="center">$\prec$</td>
-<td align="center">\prec</td>
-<td align="center">&emsp;</td>
-<td align="center">$\lhd$</td>
-<td align="center">\lhd</td>
+<td style="text-align:center">$\prec$</td>
+<td style="text-align:center">\prec</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\lhd$</td>
+<td style="text-align:center">\lhd</td>
 </tr>
 <tr>
-<td align="center">$\therefore$</td>
-<td align="center">\therefore</td>
-<td align="center">&emsp;</td>
-<td align="center">$\infty$</td>
-<td align="center">\infty</td>
+<td style="text-align:center">$\therefore$</td>
+<td style="text-align:center">\therefore</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">\infty</td>
 </tr>
 <tr>
-<td align="center">$\aleph$</td>
-<td align="center">\aleph</td>
-<td align="center">&emsp;</td>
-<td align="center">$\nabla$</td>
-<td align="center">\nabla</td>
+<td style="text-align:center">$\aleph$</td>
+<td style="text-align:center">\aleph</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\nabla$</td>
+<td style="text-align:center">\nabla</td>
 </tr>
 <tr>
-<td align="center">$\partial$</td>
-<td align="center">\partial</td>
-<td align="center">&emsp;</td>
-<td align="center">$\Im$</td>
-<td align="center">\Im</td>
+<td style="text-align:center">$\partial$</td>
+<td style="text-align:center">\partial</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\Im$</td>
+<td style="text-align:center">\Im</td>
 </tr>
 <tr>
-<td align="center">$\Re$</td>
-<td align="center">\Re</td>
-<td align="center">&emsp;</td>
-<td align="center">$\epsilon$</td>
-<td align="center">\epsilon</td>
+<td style="text-align:center">$\Re$</td>
+<td style="text-align:center">\Re</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\epsilon$</td>
+<td style="text-align:center">\epsilon</td>
 </tr>
 <tr>
-<td align="center">$\varepsilon$</td>
-<td align="center">\varepsilon</td>
-<td align="center">&emsp;</td>
-<td align="center">$\phi$</td>
-<td align="center">\phi</td>
+<td style="text-align:center">$\varepsilon$</td>
+<td style="text-align:center">\varepsilon</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\phi$</td>
+<td style="text-align:center">\phi</td>
 </tr>
 <tr>
-<td align="center">$\varphi$</td>
-<td align="center">\varphi</td>
-<td align="center">&emsp;</td>
-<td align="center">$\ell$</td>
-<td align="center">\ell</td>
+<td style="text-align:center">$\varphi$</td>
+<td style="text-align:center">\varphi</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\ell$</td>
+<td style="text-align:center">\ell</td>
 </tr>
 <tr>
-<td align="center">$\ldots$</td>
-<td align="center">\ldots</td>
-<td align="center">&emsp;</td>
-<td align="center">$\cdot$</td>
-<td align="center">\cdots</td>
+<td style="text-align:center">$\ldots$</td>
+<td style="text-align:center">\ldots</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\cdot$</td>
+<td style="text-align:center">\cdots</td>
 </tr>
 <tr>
-<td align="center">$\ddots$</td>
-<td align="center">\ddots</td>
-<td align="center">&emsp;</td>
-<td align="center">$\vdots$</td>
-<td align="center">\vdots</td>
+<td style="text-align:center">$\ddots$</td>
+<td style="text-align:center">\ddots</td>
+<td style="text-align:center">&emsp;</td>
+<td style="text-align:center">$\vdots$</td>
+<td style="text-align:center">\vdots</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="（十四）空格"><a href="#（十四）空格" class="headerlink" title="（十四）空格"></a><strong>（十四）空格</strong></h3><p>&emsp;&emsp;MathJax无法识别空格（准确来说是会忽略空格）。</p>
 <blockquote>
-<p>输入 <strong>\$a&emsp;b\$</strong> ，输出 <strong>$a    b$</strong></p>
+<p>输入 <strong>$a&emsp;b$</strong> ，输出 <strong>$a    b$</strong></p>
 </blockquote>
 <h4 id="单个空格"><a href="#单个空格" class="headerlink" title="单个空格( \\; )"></a><strong>单个空格( \\; )</strong></h4><p>代码</p>
 <blockquote>
-<p><strong>\$a\\;b\$</strong> &emsp;&emsp;&emsp;$a\;b$</p>
+<p><strong>$a\\;b$</strong> &emsp;&emsp;&emsp;$a\;b$</p>
 </blockquote>
 <h4 id="四个空格-quad"><a href="#四个空格-quad" class="headerlink" title="四个空格( \quad )"></a><strong>四个空格( \quad )</strong></h4><blockquote>
-<p>\$a\\quad b\$ &emsp;&emsp;$a\quad b$</p>
+<p>$a\\quad b$ &emsp;&emsp;$a\quad b$</p>
 </blockquote>
 <h4 id="八个空格-qquad"><a href="#八个空格-qquad" class="headerlink" title="八个空格( \qquad )"></a><strong>八个空格( \qquad )</strong></h4><blockquote>
-<p>\$a\\qquad b\$ &emsp;&emsp; $a\qquad b$</p>
+<p>$a\\qquad b$ &emsp;&emsp; $a\qquad b$</p>
 </blockquote>
-<h3 id="重音和变音符号"><a href="#重音和变音符号" class="headerlink" title="重音和变音符号"></a><strong>重音和变音符号</strong></h3><table>
+<h3 id="重音和变音符号"><a href="#重音和变音符号" class="headerlink" title="重音和变音符号"></a><strong>重音和变音符号</strong></h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="center">符号</th>
-<th align="center">表达方式</th>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">表达方式</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">$\hat{x}$</td>
-<td align="center">\hat{x}</td>
+<tbody>
+<tr>
+<td style="text-align:center">$\hat{x}$</td>
+<td style="text-align:center">\hat{x}</td>
 </tr>
 <tr>
-<td align="center">$\widehat{abc}$</td>
-<td align="center">\widehat{abc}</td>
+<td style="text-align:center">$\widehat{abc}$</td>
+<td style="text-align:center">\widehat{abc}</td>
 </tr>
 <tr>
-<td align="center">$\bar{x}$</td>
-<td align="center">\bar{x}</td>
+<td style="text-align:center">$\bar{x}$</td>
+<td style="text-align:center">\bar{x}</td>
 </tr>
 <tr>
-<td align="center">$\overline{abc}$</td>
-<td align="center">\overline{abc}</td>
+<td style="text-align:center">$\overline{abc}$</td>
+<td style="text-align:center">\overline{abc}</td>
 </tr>
 <tr>
-<td align="center">$\vec{x}$</td>
-<td align="center">\vec{x}</td>
+<td style="text-align:center">$\vec{x}$</td>
+<td style="text-align:center">\vec{x}</td>
 </tr>
 <tr>
-<td align="center">$\overrightarrow{abc}$</td>
-<td align="center">\overrightarrow{abc}</td>
+<td style="text-align:center">$\overrightarrow{abc}$</td>
+<td style="text-align:center">\overrightarrow{abc}</td>
 </tr>
 <tr>
-<td align="center">$\overleftrightarrow{abc}$</td>
-<td align="center">overleftrightarrow{abc}</td>
+<td style="text-align:center">$\overleftrightarrow{abc}$</td>
+<td style="text-align:center">overleftrightarrow{abc}</td>
 </tr>
 <tr>
-<td align="center">$\dot{x}$</td>
-<td align="center">dot{x}</td>
+<td style="text-align:center">$\dot{x}$</td>
+<td style="text-align:center">dot{x}</td>
 </tr>
 <tr>
-<td align="center">$\ddot{x}$</td>
-<td align="center">\ddot{x}</td>
+<td style="text-align:center">$\ddot{x}$</td>
+<td style="text-align:center">\ddot{x}</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="（十五）MathJax输出特殊符号"><a href="#（十五）MathJax输出特殊符号" class="headerlink" title="（十五）MathJax输出特殊符号"></a><strong>（十五）MathJax输出特殊符号</strong></h3><p>&emsp;&emsp;特殊符号之前，加上“\\”即可输出特殊符号。<br>&emsp;&emsp;但是！！！有一个符号mathjax无法通过这个方法输出！就是 <strong>“\\”</strong> 本身。因为 <strong>\\\\</strong> 另有定义，是换行。输出“\\”的正确方法是 <strong>\backslash</strong> 。</p>
 
       
@@ -997,10 +1047,10 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">1.9k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="Zikun">Zikun</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-30, 14:05:32</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-02, 19:22:41</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-30, 14:05:32</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/30/mathjax%E5%9F%BA%E6%9C%AC%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F-latex%E5%85%AC%E5%BC%8F/" title="mathjax基本数学公式(latex公式)">http://zikun97.github.io/2019/11/30/mathjax%E5%9F%BA%E6%9C%AC%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F-latex%E5%85%AC%E5%BC%8F/</a>
     <p>
-        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
 </div>
 
@@ -1121,7 +1171,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#机器学习','#线性回归','#mathjax','#latex','#opencv',],
+            'data': ['#mathjax','#latex','#机器学习','#线性回归','#opencv','#Segmentation',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
