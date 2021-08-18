@@ -6,26 +6,17 @@
   <meta name="keywords" content=" Segmentation ">
   <meta name="description" content="论文翻译及理解：Object Contextual Representations for Semantic Segmentation | Zikun&#39;s blogs">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="基于语义分割的目标上下文表示摘要在本文中，我们研究了语义分割中的上下文聚合问题。由于像素的标签是像素所属的对象的类别，我们提出了一种简单而有效的方法，即目标上下文表示，通过利用相应目标类别表示来表示像素的特征。首先，我们在分割标注集的监督下学习目标区域。然后，我们通过聚集位于目标区域中的像素表示来计算目标区域表示。最后，我们计算每个像素与每个目标区域之间的关系，并用目标上下文表示来增加每个像素的表">
+<meta name="description" content="2022届秋招时间节点    公司 提前批截止 正式批时间 备注     阿里 - 7.19~   腾讯 - 8.5-9.27   字节 7.31 8.1~   华为 7.5(fx) 9.1~   百度 8.27    拼多多 8.29    美团 7.26(客户端) 8.2~10.14   京东 7.15    快手 - 8.13~   小米 8.31    lazada - 可投递 与阿里不冲">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文翻译及理解：Object Contextual Representations for Semantic Segmentation">
-<meta property="og:url" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/index.html">
+<meta property="og:title" content="2022届秋招时间节点">
+<meta property="og:url" content="http://zikun97.github.io/2021/08/18/2022%E5%B1%8A%E7%A7%8B%E6%8B%9B%E6%97%B6%E9%97%B4%E8%8A%82%E7%82%B9/index.html">
 <meta property="og:site_name" content="Zikun&#39;s blogs">
-<meta property="og:description" content="基于语义分割的目标上下文表示摘要在本文中，我们研究了语义分割中的上下文聚合问题。由于像素的标签是像素所属的对象的类别，我们提出了一种简单而有效的方法，即目标上下文表示，通过利用相应目标类别表示来表示像素的特征。首先，我们在分割标注集的监督下学习目标区域。然后，我们通过聚集位于目标区域中的像素表示来计算目标区域表示。最后，我们计算每个像素与每个目标区域之间的关系，并用目标上下文表示来增加每个像素的表">
+<meta property="og:description" content="2022届秋招时间节点    公司 提前批截止 正式批时间 备注     阿里 - 7.19~   腾讯 - 8.5-9.27   字节 7.31 8.1~   华为 7.5(fx) 9.1~   百度 8.27    拼多多 8.29    美团 7.26(客户端) 8.2~10.14   京东 7.15    快手 - 8.13~   小米 8.31    lazada - 可投递 与阿里不冲">
 <meta property="og:locale">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/1.png">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/2.png">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表1.png">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表2.png">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表3.png">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表4.png">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表5.png">
-<meta property="article:published_time" content="2021-01-15T08:47:34.000Z">
-<meta property="article:modified_time" content="2021-01-15T08:47:34.000Z">
+<meta property="article:published_time" content="2021-08-18T07:09:14.000Z">
+<meta property="article:modified_time" content="2021-08-18T07:09:14.000Z">
 <meta property="article:author" content="Zikun">
-<meta property="article:tag" content="Segmentation">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/1.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -168,7 +159,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(7)</small></div></li>
+    <li><div class="all active">全部文章<small>(8)</small></div></li>
     
         
             
@@ -202,6 +193,14 @@
             
         
     
+        
+            
+            <li><div data-rel="杂项">杂项<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -212,8 +211,8 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="7">
-<input type="hidden" id="yelog_site_word_count" value="11.9k">
+<input type="hidden" id="yelog_site_posts_number" value="8">
+<input type="hidden" id="yelog_site_word_count" value="13.7k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -275,6 +274,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="杂项 "
+           href="/2021/08/18/2022%E5%B1%8A%E7%A7%8B%E6%8B%9B%E6%97%B6%E9%97%B4%E8%8A%82%E7%82%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2022届秋招时间节点">2022届秋招时间节点</span>
+            <span class="post-date" title="2021-08-18 15:09:14">2021/08/18</span>
+        </a>
         
         <a  class="Paper "
            href="/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/"
@@ -373,7 +380,7 @@
     </div>
     <div class="article-meta">
         
-        <span>字数:7k</span>
+        <span>字数:8.7k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -403,7 +410,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E7%9A%84%E7%9B%AE%E6%A0%87%E4%B8%8A%E4%B8%8B%E6%96%87%E8%A1%A8%E7%A4%BA"><span class="toc-text">基于语义分割的目标上下文表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BC%95%E8%A8%80"><span class="toc-text">1 引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2 相关工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%96%B9%E6%B3%95"><span class="toc-text">3 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E8%83%8C%E6%99%AF"><span class="toc-text">3.1 背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%85%AC%E5%BC%8F"><span class="toc-text">3.2 公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%BB%93%E6%9E%84"><span class="toc-text">3.3 结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E7%BB%8F%E9%AA%8C%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-text">3.4 经验性分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AE%9E%E9%AA%8C%EF%BC%9A%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2"><span class="toc-text">4 实验：语义分割</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">4.1 数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-text">4.2 实现细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E4%B8%8E%E7%8E%B0%E6%9C%89%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">4.3 与现有上下文的比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Estate-of-the-art%E6%AF%94%E8%BE%83"><span class="toc-text">与state-of-the-art比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AE%9E%E9%AA%8C%EF%BC%9A%E5%85%A8%E6%99%AF%E5%88%86%E5%89%B2"><span class="toc-text">5 实验：全景分割</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E7%9A%84%E7%9B%AE%E6%A0%87%E4%B8%8A%E4%B8%8B%E6%96%87%E8%A1%A8%E7%A4%BA"><span class="toc-text">基于语义分割的目标上下文表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BC%95%E8%A8%80"><span class="toc-text">1 引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2 相关工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%96%B9%E6%B3%95"><span class="toc-text">3 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E8%83%8C%E6%99%AF"><span class="toc-text">3.1 背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%85%AC%E5%BC%8F"><span class="toc-text">3.2 公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%BB%93%E6%9E%84"><span class="toc-text">3.3 结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E7%BB%8F%E9%AA%8C%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-text">3.4 经验性分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AE%9E%E9%AA%8C%EF%BC%9A%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2"><span class="toc-text">4 实验：语义分割</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">4.1 数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-text">4.2 实现细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E4%B8%8E%E7%8E%B0%E6%9C%89%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">4.3 与现有上下文的比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E4%B8%8Estate-of-the-art%E6%AF%94%E8%BE%83"><span class="toc-text">4.4 与state-of-the-art比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AE%9E%E9%AA%8C%EF%BC%9A%E5%85%A8%E6%99%AF%E5%88%86%E5%89%B2"><span class="toc-text">5 实验：全景分割</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%80%BB%E7%BB%93"><span class="toc-text">6 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E8%A1%A5%E5%85%85%E6%9D%90%E6%96%99"><span class="toc-text">7 补充材料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-%E4%B8%8E%E7%B2%97%E7%B2%92%E5%BA%A6%E8%87%B3%E7%BB%86%E7%B2%92%E5%BA%A6%E6%96%B9%E6%A1%88%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">A. 与粗粒度至细粒度方案的比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E5%8F%8C%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E7%9A%84%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">B. 双注意力机制的消融研究</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E6%9B%B4%E5%A4%9A%E7%9A%84%E5%85%A8%E6%99%AF%E5%88%86%E5%89%B2%E7%BB%93%E6%9E%9C"><span class="toc-text">C. 更多的全景分割结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#D-%E5%BA%94%E7%94%A8%E4%BA%8EMobileNet-V2"><span class="toc-text">D. 应用于MobileNet V2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#E-MMSegmentation-%E7%BB%93%E6%9E%9C"><span class="toc-text">E. MMSegmentation 结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#F-%E6%80%A7%E8%83%BD%E6%94%B9%E8%BF%9B"><span class="toc-text">F. 性能改进</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -437,7 +444,7 @@
 <p><strong>区域分割。</strong> 有许多区域分割方法，它们将像素组织为一组区域（通常是超像素），然后对每个区域进行分类以获得图像分割结果。我们的方法没有对每个区域进行分割，而是使用该区域来学习像素的更好表示，从而获得更好的像素标记。</p>
 <h2 id="3-方法"><a href="#3-方法" class="headerlink" title="3 方法"></a>3 方法</h2><p>语义分割是指将图片$I$中的每个像素$l_i$分配一个标签$l_i$，$l_i$是$K$个类别中的一个标签。</p>
 <h3 id="3-1-背景"><a href="#3-1-背景" class="headerlink" title="3.1 背景"></a>3.1 背景</h3><p><strong>多尺度上下文。</strong> ASPP模块通过执行多个不同空洞间隔度[5, 6, 70]的并行空洞卷积来捕获多尺度上下文信息。</p>
-<script type="math/tex; mode=display">y_i^d = \sum_{p_s = p_i + d \Delta_t} K_t^d x_s \tag{1}</script><p>在这里，$p_s = p_i + d\Delta_t$是空洞间隔度为d的空洞卷积在$p_i$位置上的第$d$个采样位置（例如再deeplab3中，$d = 12, 24, 36$）。 $t$是卷积的位置索引，例如，对于$3 \times 3$卷积，{$\Delta t =（\Delta w，\Delta h）| \Delta w = -1，0，1，\delta h = −1，0，1$}。 $x_s$是在$p_s$的表示。 {y_i^d}是$d$th扩展卷积在$p_i$处的输出表示。 $K_t^d$是位于的内核参数$d$th扩展卷积的位置$t$。 输出的多尺度上下文表示是由并行空洞卷积表示输出的串联。</p>
+<script type="math/tex; mode=display">y_i^d = \sum_{p_s = p_i + d \Delta_t} K_t^d x_s \tag{1}</script><p>在这里，$p_s = p_i + d\Delta_t$是空洞间隔度为d的空洞卷积在$p_i$位置上的第$d$个采样位置（例如再deeplab3中，$d = 12, 24, 36$）。 $t$是卷积的位置索引，例如，对于$3 \times 3$卷积，{$\Delta t =（\Delta w，\Delta h）| \Delta w = -1，0，1，\delta h = −1，0，1$}。 $x_s$是在$p_s$的表示。 ${y_i^d}$是$d$th扩展卷积在$p_i$处的输出表示。 $K_t^d$是位于的内核参数$d$th扩展卷积的位置$t$。 输出的多尺度上下文表示是由并行空洞卷积表示输出的串联。</p>
 <p>基于空洞卷积的多尺度上下文方法在不损失分辨率的情况下捕获了多个尺度的上下文。 PSPNet中的金字塔池化模块对不同尺度表示执行一般卷积，并且还捕获了多个尺度的上下文，但是对于大规模上下文却失去了分辨率。</p>
 <p><strong>关系上下文。</strong> 关系上下文方法[16,71,76]通过考虑关系（公式2）来计算每个像素的上下文</p>
 <script type="math/tex; mode=display">y_i = \rho(\sum_{s\in \mathcal{I}}w_{is} \delta(x_s))   \tag{2}</script><p>其中，$\mathcal{I}$指图像中的像素集，$w_{is}$是$w_i$和$w_s$之间的关系，并且只能根据$w_i$或者从$w_i$和$w_s$计算得到的值进行预测。$\delta(\cdot)$和$\rho(\cdot)$是两个不同的变换函数，就像在自注意力机制中所做的那样。全局上下文方法是关系上下文的特例，其$w_is = \frac{1}{|\mathcal{I}|}$。</p>
@@ -445,19 +452,19 @@
 <p>提出的对象上下文表示方法（1）将图像$I$中的所有像素结构化为$K$个软对象区域,（2）通过聚合第k个对象区域中所有像素的表示，将每个目标区域表示为$f_k$；以及（3）考虑到像素与所有目标区域的关系，通过聚合K个目标区域表示来增强每个像素的表示：</p>
 <script type="math/tex; mode=display">y_i = \rho(\sum_{k=1}^K w_{ik}\delta(f_k)) \tag{3} $$+
 
-其中$f_k$是第个对象区域的表示，$w_{ik}$是第$i$个像素与第$k$个对象区域之间的关系。 $\delta(\cot)$ 和$\rho(\cdot)$是变换函数。
+其中$f_k$是第k个对象区域的表示，$w_{ik}$是第$i$个像素与第$k$个对象区域之间的关系。 $\delta(\cot)$ 和$\rho(\cdot)$是变换函数。
 
 ![图3： OCR pipeline 图示 （i）在粉红色的虚线框中形成软物体区域。 （ii）估计紫色虚线框中的对象区域表示形式；（iii）计算橙色虚线框中的对象上下文表示形式和增强表示形式。有关更多详细信息，请参见第3.2和3.3节。](3.png)
 
-**软物体区域。**我们将图像$I$划分为$K$个软目标区域${M_1,M_2,\ldots ,M_K}$。每个目标区域$M_k$对应于类别k，并且由2D图（或粗略分割图）表示，其中每个条目指示相应像素属于类别k的程度(置信度？)。
+**软物体区域。** 我们将图像$I$划分为$K$个软目标区域${M_1,M_2,\ldots ,M_K}$。每个目标区域$M_k$对应于类别k，并且由2D图（或粗略分割图）表示，其中每个条目指示相应像素属于类别k的程度(置信度？)。
 
 我们根据骨干网络（例如ResNet或HRNet）的中间表示输出来计算$K$个对象区域。在训练过程中，我们利用交叉熵损失在地面真值分割的监督下学习目标区域生成器。
 
 **目标区域表示。** 我们将所有像素的表示权归于属于第$k$个对象区域的度，从而形成第k个对象区域的表示。
 
 $$f_k = \sum_{i \in \mathcal{I}}m_{ki}x_i  \tag{4}</script><p>在这里，$x_i$是像素$p_i$的表示。 $m_{ki}$是对属于第$k$个对象区域的像素$p_i$的归一化程度。我们使用空间softmax对每个对象区域$M_k$进行归一化。</p>
-<p><strong>目标上下文表示。</strong>我们计算了每个像素和每个目标区域之间的关系，其关系表示如下：</p>
-<script type="math/tex; mode=display">w_{ik} = \frac{\mathcal{e}^{k(x_i, f_k)}}{\sum_{j=1}^{K} \mathcal{e}^{k(x_i, f_j)}} \tag{5}</script><p>此处，$k(x, f) = \phi(x)^T \psi(f)$是未归一化的关系函数$\phi(\cdot)$和$\psi(\cdot)$是通过1×1 conv→BN→ReLU实现的两个变换函数。这是受到自注意力机制[61]的启发，可以进行更好的关系估计。<br>像素$p_i$的对象上下文表示$y_i$是根据等式3计算的。在该等式中，$\phi(\cdot)$和$\psi(\cdot)$都是由1×1 conv→BN→ReLU实现的变换函数，并且遵循非局部网络[63]。</p>
+<p><strong>目标上下文表示。</strong> 我们计算了每个像素和每个目标区域之间的关系，其关系表示如下：</p>
+<script type="math/tex; mode=display">w_{ik} = \frac{\mathcal{e}^{k(x_i, f_k)}}{\sum_{j=1}^{K} \mathcal{e}^{k(x_i, f_j)}} \tag{5}</script><p>此处，$k(x, f) = \phi(x)^T \psi(f)$是未归一化的关系函数 $\phi(\cdot)$ 和 $\psi(\cdot)$ 是通过1×1 conv→BN→ReLU实现的两个变换函数。这是受到自注意力机制[61]的启发，可以进行更好的关系估计。<br>像素$p_i$的对象上下文表示$y_i$是根据等式3计算的。在该等式中，$\phi(\cdot)$和$\psi(\cdot)$都是由1×1 conv→BN→ReLU实现的变换函数，并且遵循非局部网络[63]。</p>
 <p><strong>增强表示。</strong> 像素$p_i$的最终表示被更新为两部分的集合，（1）原始表示$x_i$，（2）对象上下文表示$y_i$：</p>
 <script type="math/tex; mode=display">z_i = g([x_i^T y_i^T]^T). \tag{6}</script><p>其中$g(\cdot)$是用于融合原始表示和对象上下文表示的转换函数，由1×1 conv→BN→ReLU实现。<br>我们的方法的整个流程如图3所示。</p>
 <p><em>评论</em>：最近的一些研究，例如Double Attention [8]和ACFNet [74]，<br>可以类似于方程式3来表述，但是在某些方面与我们的方法不同。例如，在“双注意”中形成的区域不对应<br>到对象类，并且仅使用对象区域表示从像素表示w / o计算ACFNet [74]中的关系。</p>
@@ -487,13 +494,39 @@ $$f_k = \sum_{i \in \mathcal{I}}m_{ki}x_i  \tag{4}</script><p>在这里，$x_i$�
 <p><strong>多尺度上下文。</strong> 我们将OCR与包含PPM [79]和ASPP [6]的多尺度上下文方法进行了比较，这三个基准包括表2中的Cityscapes test，ADE20K val和LIP val。我们复现的PPM / ASPP优于[79, 6]中的原始数据。 从表2中可以看出，我们的OCR大大优于两个多尺度上下文方案。 例如，四个比较的OCR相对于PPM（ASPP）的绝对收益为1.5％（0.8％），0.8％（0.7％），0.78％（0.68％），0.84％（0.5％）。 据我们所知，考虑到基线（使用已扩展的ResNet-101）已经很强并且OCR的复杂性要小得多，这些改进已经非常重要。</p>
 <p><strong>关系上下文。</strong> 我们在包括Cityscapes test，ADE20K VAL和LIP VAL在内的三个基准测试中，将OCR与各种关系上下文方案进行了比较，包括自我注意力机制[61,63]，纵横交叉注意力机制[26]（CC-注意力机制），DANet [16]和双重注意力机制[8]。 对于复现的Double Attention，我们微调了区域的数量（因为它对超参数选择非常敏感），并且我们选择了性能最佳的64。 补充材料中说明了更详细的分析和比较。 根据表3中的结果，可以看出，在公平比较的情况下，我们的OCR优于这些关系上下文方法。 值得注意的是，我们的OCR的复杂度比大多数其他方法要小得多。</p>
 <p><strong>复杂度。</strong> 我们将OCR的效率与多尺度上下文方法和关系上下文方法的效率进行了比较。我们测量由上下文模块引入的增加的参数，GPU内存，计算复杂度（由FLOP的数量来衡量）和推理时间，而不计算主干网的复杂度。表4中的比较显示了所提出的OCR方法的优越性。<br>参数：与多尺度上下文方法相比，大多数关系上下文方法需要较少的参数。例如，我们的OCR仅分别需要PPM和ASPP​​的参数的1/2和2/3。<br>内存：与其他方法（例如DANet，PPM）相比，我们的OCR和Double Attention都需要更少的GPU内存。例如，我们的GPU内存消耗分别是PPM，DANet，CC-Attention和Self-Attention的内存消耗的1 / 4、1 / 10、1 / 2、1 / 10。<br>FLOP：我们的OCR仅需要分别基于PPM，ASPP，DANet，CC注意和自我注意的FLOP的1 / 2、7 / 10、3 / 10、2 / 5和1/2。<br>运行时间：OCR的运行时间非常小：分别具有PPM，ASPP，DANet，CC注意和自我注意的运行时间仅为运行时间的1 / 2、1 / 2、1 / 3、1 / 3和1/2。一般而言，如果我们考虑性能，内存复杂性，GFLOP和运行时间之间的平衡，则OCR是一个更好的选择。</p>
-<h3 id="与state-of-the-art比较"><a href="#与state-of-the-art比较" class="headerlink" title="与state-of-the-art比较"></a>与state-of-the-art比较</h3><p>考虑到不同的方法可以在不同的基准上进行改进以达到最佳性能，因此，我们根据现有基准将其分为两类：（i）简单基准：采用步长为8的空洞卷积ResNet-101；（ii）先进的基线：PSPNet，DeepLabv3，多网格（MG），编码器-解码器结构，可通过第4步或更强的主干（例如WideResNet-38，Xception-71和HRNet）实现更高分辨率的输出。<br>为了公平地与两个小组进行公平比较，我们在简单的基线（空洞卷积ResNet-101，步幅为8）和高级基线（HRNet-W48，步幅为4）上执行OCR。值得注意的是，我们对HRNet-W48（相对于ResNet-101）的改进与其他基于高级基准方法的工作的改进相当。例如，在Cityscapes test中，使用Multi-grid的DGCNet [77]获得0.7％的收益，而使用更强大的骨干网的OCR获得0.6％的收益。我们总结了表5中的所有结果，并分别说明了每个基准的比较细节，如下所示。</p>
+<h3 id="4-4-与state-of-the-art比较"><a href="#4-4-与state-of-the-art比较" class="headerlink" title="4.4 与state-of-the-art比较"></a>4.4 与state-of-the-art比较</h3><p>考虑到不同的方法可以在不同的基准上进行改进以达到最佳性能，因此，我们根据现有基准将其分为两类：（i）简单基准：采用步长为8的空洞卷积ResNet-101；（ii）先进的基线：PSPNet，DeepLabv3，多网格（MG），编码器-解码器结构，可通过第4步或更强的主干（例如WideResNet-38，Xception-71和HRNet）实现更高分辨率的输出。<br>为了公平地与两个小组进行公平比较，我们在简单的基线（空洞卷积ResNet-101，步幅为8）和高级基线（HRNet-W48，步幅为4）上执行OCR。值得注意的是，我们对HRNet-W48（相对于ResNet-101）的改进与其他基于高级基准方法的工作的改进相当。例如，在Cityscapes test中，使用Multi-grid的DGCNet [77]获得0.7％的收益，而使用更强大的骨干网的OCR获得0.6％的收益。我们总结了表5中的所有结果，并分别说明了每个基准的比较细节，如下所示。</p>
 <p><img src="表5.png" alt=" **与 state-of-the-art比较** 我们用M表示多尺度上下文，用R表示关系上下文。 红色，绿色，蓝色代表前三名的结果。 我们分别使用b，†和‡标记使用Cityscapes val的结果（不使用woo），使用Mapillary数据集的方法和使用Cityscapes视频数据集的方法"></p>
 <p><strong>citysapes。</strong> 与不使用粗粒度数据的基于Cityscape test的简单基准线的方法相比，我们的方法可达到81.8％的最佳性能，这已经可以与基于高级基准线的某些方法（例如DANet，ACFNet）相提并论。我们的方法通过利用粗粒度标注的图像进行训练，可达到82.4％的更好性能。</p>
-<p>为了与基于高级基线的方法进行比较，我们在HRNet-W48上执行了OCR，并在Mapillary数据集上对模型进行了预训练[50]。我们的方法在Cityscapes测试中达到84.2％。我们进一步应用了一种新颖的后处理方案SegFix [72]来完善边界质量，从而带来0.3％的改善。我们最终提交的“ HRNet + OCR + SegFix”达到了84.5％，在“cityscapes”排行榜上排名第一。为了与基于高级基准的方法进行比较，我们在HRNet-W48上进行了OCR，并进行了预训练我们在Mapillary数据集上的模型[50]。我们的方法在Cityscapes测试中达到84.2％。我们进一步应用了一种新颖的后处理方案SegFix [72]来完善边界质量，从而带来0.3％的改善。我们最终提交的“ HRNet + OCR + SegFix”达到84.5％，在我们提交时，它在Cityscapes排行榜上排名第一。实际上，我们在HRNet-W48上分别执行PPM和ASPP​​，凭经验发现，直接应用PPM或ASPP不会提高性能，甚至会降低性能，而我们的OCR会持续提高性能。</p>
+<p>为了与基于高级基准的方法进行比较，我们在HRNet-W48上进行了OCR，并进行了预训练我们在Mapillary数据集上的模型[50]。我们的方法在Cityscapes测试中达到84.2％。我们进一步应用了一种新颖的后处理方案SegFix [72]来完善边界质量，从而带来0.3％的改善。我们最终提交的“ HRNet + OCR + SegFix”达到84.5％，在我们提交时，它在Cityscapes排行榜上排名第一。实际上，我们在HRNet-W48上分别执行PPM和ASPP​​，凭经验发现，直接应用PPM或ASPP不会提高性能，甚至会降低性能，而我们的OCR会持续提高性能。</p>
 <p>值得注意的是，最近的工作[57]通过结合我们的“ HRNet + OCR”和新的分层多尺度关注机制，在Cityscapes排行榜上设定了85.4％的最新性能。</p>
 <p><strong>ADE20K。</strong> 从表5中可以看出，与以前基于简单基准和高级基准的大多数方法相比，我们的OCR达到了有竞争力的成绩（分别为45.28％和45.66％）。例如，ACFNet [22]利用多尺度上下文和关系上下文来实现更高的性能。最新的ACNet [17]通过结合更丰富的本地和全球环境来实现最佳性能。<br><strong>LIP。</strong> 基于简单的基准，我们的方法在LIP val上可实现55.60％的最佳性能。应用更强的主干HRNetV2-W48可以将性能进一步提高到56.65％，这比以前的方法要好。 CNIF [62]的最新工作是通过注入人体部位的层次结构知识来实现​​最佳性能（56.93％）。我们的方法可能会受益于这种层次结构知识。所有结果均基于仅flip测试，而不是多尺度测试。<br><strong>PASCAL-Context。</strong> 我们根据[55]评估了59个类别的效果。可以看出，我们的方法优于基于简单基准的先前最佳方法和基于高级基准的先前最佳方法。 HRNet-W48 + OCR方法可实现56.2％的最佳性能，明显优于第二佳的性能，例如ACPNet（54.7％）和ACNet（54.1％）。<br><strong>COCO-Stuff。</strong> 可以看出，我们的方法实现了最佳性能，基于ResNet-101的39.5％和基于HRNetV2-48的40.5％。<br><strong>定性结果。</strong> 由于篇幅有限，我们在补充材料中说明了定性结果。</p>
-<h2 id="5-实验：全景分割"><a href="#5-实验：全景分割" class="headerlink" title="5 实验：全景分割"></a>5 实验：全景分割</h2><p>略</p>
+<h2 id="5-实验：全景分割"><a href="#5-实验：全景分割" class="headerlink" title="5 实验：全景分割"></a>5 实验：全景分割</h2><p>为了验证该方法的泛化能力，我们将OCR方案应用于更具挑战性的全景分割任务。全景分割任务连结了实例分割和语义分割。</p>
+<p><strong>数据集</strong>。我们选择COCO数据集来研究我们的方法对全景图像分割的有效性。我们遵循之前的工作，使用了所有2017年的COCO数据集图片，并标注了80个thing和53个stuff类。</p>
+<p><strong>训练细节</strong>。我们遵循在Detectron2平台中默认的训练设置“COCO-panopoptic Segmentation Baselines with panopoptic FPN（3倍学习率）”。我们使用论文中的原始参数（Panoptic FPN w/ResNet-50，PQ:39.2%/Panoptic FPN w/ResNet-101，PQ:40.3%）复现Panoptic FPN模型具有更高的性能，我们选择了更高的再现结果作为基线。</p>
+<p>在我们的实现中，我们使用来自语义分割头（在Panoptic FPN中）的原始预测来计算软对象区域，然后使用OCR头来预测定义的语义分割图。我们将原始语义分割头和OCR头的损失权重都设置为0.25。所有其他培训设置保持不变，以便公平比较。我们直接使用相同的OCR实现（用于语义分割任务），而无需任何调整。</p>
+<p><img src="表6.png" alt="表6 **COCO val 2017数据集上的全景分割结果** 基于开源Detectron2再现了Panoptic FPN的性能，并使用了3倍学习率。我们的OCR可以提高两个主干网络的PQ性能。"></p>
+<p><strong>结果</strong>。在表6中，我们可以看到OCR将Panoptic FPN（ResNet-101）的PQ性能从43.0%提高到44.2%，其中主要的改进来自于mIoU和PQSt测量的stuff区域上更好的分割质量。具体而言，我们的OCR将Panoptic FPN（ResNet-101）的mIoU和PQSt分别提高了1.0%和2.3%。总的来说，“Panoptic FPN+OCR”的性能与最近的各种方法相比非常有竞争力[66,44,69]。在补充材料中我们还报告了Panoptic FPN与PPM和ASPP的结果，以说明我们的OCR的优势。</p>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6 总结"></a>6 总结</h2><p>在这项工作中，我们提出了一个对象上下文表示方法的语义分割。该方法成功的主要原因是像素的标签是该像素所在对象的标签，并且通过用相应的对象区域表示对每个像素进行特征化来增强像素表示。我们的经验表明，我们的方法带来了各种基准的一致性改进。</p>
+<p><strong>鸣谢</strong>。 本工作得到了国家自然科学基金项目61390511号合同和中国科学院前沿科学重点研究项目QYZDJ-SSW-JSC009的部分资助。</p>
+<h2 id="7-补充材料"><a href="#7-补充材料" class="headerlink" title="7 补充材料"></a>7 补充材料</h2><p>在A部分，我们将我们的方法与现有的粗粒度-细粒度方法进行比较。在B部分中，我们研究了区域数的影响，并用双注意的方法说明了定性结果。在C部分中，我们展示了COCO val 2017上的Panoptic FPN+PPM/ASPP结果以及COCO  test-dev 的Panoptic FPN/Panoptic FPN+OCR的结果。在D部分中，我们将OCR应用于MobileNetV2，以验证我们的方法在实时应用中的有效性。在E部分中，我们基于最近的MMSEGECTION代码基验证了OCR相对于传统的DeepLabv3和DeepLabv3+的优势。最后，在F部分中，我们举例说明了基于OCR方案的定性改进。</p>
+<h3 id="A-与粗粒度至细粒度方案的比较"><a href="#A-与粗粒度至细粒度方案的比较" class="headerlink" title="A. 与粗粒度至细粒度方案的比较"></a>A. 与粗粒度至细粒度方案的比较</h3><p>许多现有的研究已经利用了各种从粗到细的方法来使用粗分割结果来提高最终的分割结果。我们主要比较OCR和两种流行的机制，包括：</p>
+<p><strong>标签映射</strong>：将输入图像或特征映射与粗略预测相结合，以预测重新定义的标签映射。我们将粗分割图与ResNet-101 Stage 4输出的特征图连接起来，并在连接的特征图上应用最终分类器来预测重新定义的分割图。</p>
+<p><strong>标签集成</strong>：将粗分割图与细分割图直接集成。我们直接使用粗分割图和细分割图的加权和作为最终的精确预测。</p>
+<p>此外，我们还展示了仅使用粗分割图（从ResNet第3阶段预测）和仅使用细分割图（从ResNet第4阶段预测）的性能。我们选择扩张的ResNet-101作为基线。根据表7中的结果，可以看出，我们的OCR比所有其他粗到细方法都有很大的优势。</p>
+<h3 id="B-双注意力机制的消融研究"><a href="#B-双注意力机制的消融研究" class="headerlink" title="B. 双注意力机制的消融研究"></a>B. 双注意力机制的消融研究</h3><p><strong>区域数量</strong>。我们定义了双注意力方法中的区域数量，并在表8中展示了cityscapes val的结果。如果未指定，我们选择K=64。此外，可以看出，双注意力的表现对区域数的选择很敏感，我们的方法（固定区域数）始终优于不同区域数的双注意力方法。</p>
+<p><strong>定性结果</strong>，我们将双注意预测区域和OCR预测的目标区域可视化如图4所示，可见OCR预测的目标区域都对应于明确的语义，如道路、人行道和汽车类别，而具有双重注意的预测区域主要突出没有特定语义的轮廓像素，这可能是我们方法的主要优势。</p>
+<p><img src="4.png" alt="图4 我们从Cityscapes val中随机选择了一幅图像及其ground-truth分割图。第一行显示了用双重注意力预测的3个区域，第二行显示了用OCR生成的3个对象区域。可以看出，基于OCR的目标区域比双重注意更可靠"></p>
+<p><img src="表7.png" alt="表7 与其他粗分割到细分割机制的比较。所有结果均在cityscapes val上进行了评价"></p>
+<p><img src="表8.png" alt="表8 k在双重注意力机制中的影响。K是区域数。K是OCR的准确分类数。"></p>
+<p><img src="表9.png" alt="表9 **在COCO val 2017上的全景图分割结果**。基于官方开源Detectron2再现Panoptic FPN的性能，我们使用默认值的3倍学习速率计划。在公平比较下，我们的OCR始终优于PPM和ASPP"></p>
+<h3 id="C-更多的全景分割结果"><a href="#C-更多的全景分割结果" class="headerlink" title="C. 更多的全景分割结果"></a>C. 更多的全景分割结果</h3><p>首先，我们直接将PPM或ASPP head应用于Panoptic FPN中的语义分割head之前，无需任何其他修改。在表9中，我们报告了这两种方法的结果，我们可以发现我们的OCR优于基于Panoptic FPN的PPM head和APP head。值得注意的是，如本文所示，我们的OCR也比PPM和ASPP更有效。其次，我们也在表10中报告了基于OCR的在COCO test-dev的结果。我们可以看到，OCR在COCO-val集和test-dev集上都持续改进了结果。</p>
+<p><img src="表10.png" alt="COCO-test-dev上的全景分割结果。我们将基于ResNet-101的全景FPN/Panoptic FPN+OCR的结果提交COCO-test-dev排行榜。我们还展示了原始结果。我们的OCR不断提高COCO test-dev的性能。"></p>
+<h3 id="D-应用于MobileNet-V2"><a href="#D-应用于MobileNet-V2" class="headerlink" title="D. 应用于MobileNet V2"></a>D. 应用于MobileNet V2</h3><p>我们在MobileNetV2上应用OCR，并在表5中展示性能。具体来说，我们按照相同的训练设置训练MobileNetV2，期望将批大小更改为16，训练迭代次数更改为100K。可以看出，OCR显著提高了cityscapes val的分割性能，同时略微增加了推断时间（或更小的FPS）</p>
+<p><img src="5.png" alt="MobileNetV2+OCR：速度（通过FPS测量）在p40gpu上测试，输入图像大小为1024× 512。"></p>
+<h3 id="E-MMSegmentation-结果"><a href="#E-MMSegmentation-结果" class="headerlink" title="E. MMSegmentation 结果"></a>E. MMSegmentation 结果</h3><p>为了验证我们的OCR方法在不同的代码库中具有良好的通用性，我们进一步比较了OCR、DeepLabv3和DeepLabv3+基于最新代码库MMSegmentation的分割结果。具体来说，我们在两种不同的训练迭代计划下评估不同的方法：（i）40K迭代，（ii）80K迭代。我们将两个训练计划的初始学习率设置为0.02，批大小设置为16。我们选择裁剪尺寸为1024× 512和主干作为扩展的ResNet-101，所有方法的输出步长默认为8，以确保比较的公平性。</p>
+<p>我们在表11中报告了GPU内存消耗（用于训练）、推理速度（用于测试）和mIoUs（在Cityscapes验证集上）。我们可以看到，在这两种训练设置下，OCR与DeepLabv3和DeepLabv3+相比取得了更好或可比的性能。特别是，我们的OCR需要更少的GPU内存消耗，并在Cityscapes基准上实现更高的FPS。</p>
+<p><img src="表11.png" alt="基于MMSegmentation代码库的城市景观结果。GPU内存消耗越小越好，FPS和mIoU都越大越好。使用FLIP和多尺度测试在城市景观验证集w/o上评估mIoU。在训练期间，用每个GPU上的2个图像测试GPU内存消耗。在处理1幅分辨率为1024的图像的基础上，对FPS进行了测试× 2048在一个GPU上。我们都使用特斯拉v100gpu和Pytorch 1.5.1进行实验。"></p>
+<h3 id="F-性能改进"><a href="#F-性能改进" class="headerlink" title="F. 性能改进"></a>F. 性能改进</h3><p>我们在图6中说明了我们的方法在不同基准上的定性改进。我们使用白色虚线框来标记硬区域，这些硬区域被我们的方法很好地分类，但被基线错误地分类。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 525244039@qq.com </span>
@@ -508,7 +541,7 @@ $$f_k = \sum_{i \in \mathcal{I}}m_{ki}x_i  \tag{4}</script><p>在这里，$x_i$�
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>论文翻译及理解：Object Contextual Representations for Semantic Segmentation</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">7k</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">8.7k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="Zikun">Zikun</a></p>
     <p><span class="copy-title">发布时间:</span>2021-01-15, 16:47:34</p>
     <p><span class="copy-title">最后更新:</span>2021-01-15, 16:47:34</p>

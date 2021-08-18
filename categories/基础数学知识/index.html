@@ -6,26 +6,17 @@
   <meta name="keywords" content="">
   <meta name="description" content="Zikun&#39;s blogs">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="基于语义分割的目标上下文表示摘要在本文中，我们研究了语义分割中的上下文聚合问题。由于像素的标签是像素所属的对象的类别，我们提出了一种简单而有效的方法，即目标上下文表示，通过利用相应目标类别表示来表示像素的特征。首先，我们在分割标注集的监督下学习目标区域。然后，我们通过聚集位于目标区域中的像素表示来计算目标区域表示。最后，我们计算每个像素与每个目标区域之间的关系，并用目标上下文表示来增加每个像素的表">
+<meta name="description" content="2022届秋招时间节点    公司 提前批截止 正式批时间 备注     阿里 - 7.19~   腾讯 - 8.5-9.27   字节 7.31 8.1~   华为 7.5(fx) 9.1~   百度 8.27    拼多多 8.29    美团 7.26(客户端) 8.2~10.14   京东 7.15    快手 - 8.13~   小米 8.31    lazada - 可投递 与阿里不冲">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文翻译及理解：Object Contextual Representations for Semantic Segmentation">
-<meta property="og:url" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/index.html">
+<meta property="og:title" content="2022届秋招时间节点">
+<meta property="og:url" content="http://zikun97.github.io/2021/08/18/2022%E5%B1%8A%E7%A7%8B%E6%8B%9B%E6%97%B6%E9%97%B4%E8%8A%82%E7%82%B9/index.html">
 <meta property="og:site_name" content="Zikun&#39;s blogs">
-<meta property="og:description" content="基于语义分割的目标上下文表示摘要在本文中，我们研究了语义分割中的上下文聚合问题。由于像素的标签是像素所属的对象的类别，我们提出了一种简单而有效的方法，即目标上下文表示，通过利用相应目标类别表示来表示像素的特征。首先，我们在分割标注集的监督下学习目标区域。然后，我们通过聚集位于目标区域中的像素表示来计算目标区域表示。最后，我们计算每个像素与每个目标区域之间的关系，并用目标上下文表示来增加每个像素的表">
+<meta property="og:description" content="2022届秋招时间节点    公司 提前批截止 正式批时间 备注     阿里 - 7.19~   腾讯 - 8.5-9.27   字节 7.31 8.1~   华为 7.5(fx) 9.1~   百度 8.27    拼多多 8.29    美团 7.26(客户端) 8.2~10.14   京东 7.15    快手 - 8.13~   小米 8.31    lazada - 可投递 与阿里不冲">
 <meta property="og:locale">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/1.png">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/2.png">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表1.png">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表2.png">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表3.png">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表4.png">
-<meta property="og:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/表5.png">
-<meta property="article:published_time" content="2021-01-15T08:47:34.000Z">
-<meta property="article:modified_time" content="2021-01-15T08:47:34.000Z">
+<meta property="article:published_time" content="2021-08-18T07:09:14.000Z">
+<meta property="article:modified_time" content="2021-08-18T07:09:14.000Z">
 <meta property="article:author" content="Zikun">
-<meta property="article:tag" content="Segmentation">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://zikun97.github.io/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/1.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -168,7 +159,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(7)</small></div></li>
+    <li><div class="all active">全部文章<small>(8)</small></div></li>
     
         
             
@@ -202,6 +193,14 @@
             
         
     
+        
+            
+            <li><div data-rel="杂项">杂项<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -212,8 +211,8 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="7">
-<input type="hidden" id="yelog_site_word_count" value="11.9k">
+<input type="hidden" id="yelog_site_posts_number" value="8">
+<input type="hidden" id="yelog_site_word_count" value="13.7k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -275,6 +274,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="杂项 "
+           href="/2021/08/18/2022%E5%B1%8A%E7%A7%8B%E6%8B%9B%E6%97%B6%E9%97%B4%E8%8A%82%E7%82%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2022届秋招时间节点">2022届秋招时间节点</span>
+            <span class="post-date" title="2021-08-18 15:09:14">2021/08/18</span>
+        </a>
         
         <a  class="Paper "
            href="/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/"
@@ -360,16 +367,11 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="Past-and-Future"><a href="#Past-and-Future" class="headerlink" title="Past and Future"></a>Past and Future</h2><p>研究生阶段将要开始了，迷茫的大学时代将要过去了，<strong>谨以此纪念大学4年的悠闲时光</strong> </p>
-<p>不定期更新关于研究生阶段的学习经验与心得</p>
-<ul>
-<li><strong>Machine learning</strong></li>
-<li><strong>deep learning</strong></li>
-<li><strong>computer vision</strong></li>
-</ul>
+            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="Past-and-Future"><a href="#Past-and-Future" class="headerlink" title="Past and Future"></a>Past and Future</h2><p>记录一下自己遇到的一些学习问题。</p>
 <h2 id="关于本站"><a href="#关于本站" class="headerlink" title="关于本站"></a>关于本站</h2><p><strong>Zikun‘s blog</strong> 是王治坤的个人站。</p>
-<p>到目前为止已经写了<code class="article_number">&lt;/code&gt;篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv">&lt;/code&gt;人次 ， 访问量：<code class="site_pv"></code>次</p>
+<!-- 到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。
+
+本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次 -->
 <h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p>感谢<strong>阿杰</strong>的主题</p>
 <h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>，主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
 <p>主要功能：</p>
