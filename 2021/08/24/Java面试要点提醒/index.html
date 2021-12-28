@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Java面试要点提醒 | Zikun&#39;s blogs</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Java面试要点提醒 | Zikun&#39;s blogs">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="操作系统的含义及作用用来管理硬件和软件资源，屏蔽了硬件系统的复杂性。负责内存管理、硬件管理、文件管理、应用管理。 进程与线程 进程的状态 创建状态 就绪状态 运行状态 阻塞状态 挂起状态 阻塞挂起状态   终止状态   进程与线程的区别 进程调度算法 先来先服务 短作业优先 高响应比有限 最高优先级调度 时间片轮转 多级反馈队列    进程、线程与协程上下文切换 cpu上下文切换：cpu寄存器、程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统相关知识点">
+<meta property="og:url" content="http://zikun97.github.io/2021/08/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="Zikun&#39;s blogs">
+<meta property="og:description" content="操作系统的含义及作用用来管理硬件和软件资源，屏蔽了硬件系统的复杂性。负责内存管理、硬件管理、文件管理、应用管理。 进程与线程 进程的状态 创建状态 就绪状态 运行状态 阻塞状态 挂起状态 阻塞挂起状态   终止状态   进程与线程的区别 进程调度算法 先来先服务 短作业优先 高响应比有限 最高优先级调度 时间片轮转 多级反馈队列    进程、线程与协程上下文切换 cpu上下文切换：cpu寄存器、程">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-08-30T08:28:00.000Z">
+<meta property="article:modified_time" content="2021-08-30T08:28:00.000Z">
+<meta property="article:author" content="Zikun">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>Zikun</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/Zikun97" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+        <a title="weibo" href="https://weibo.com/6011349407/profile?topnav=1&amp;wvr=6&amp;is_all=1#_rnd1574505654288" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/wzk524409/activities" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:525244039@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=525244039&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=422116296" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(14)</small></div></li>
+    
+        
+            
+            <li><div data-rel="基础数学知识">基础数学知识<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="机器学习">机器学习<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="杂项">杂项<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Java">Java<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Mysql">Mysql<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="基础知识">基础知识<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="OpenCV">OpenCV<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Paper">Paper<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="14">
+<input type="hidden" id="yelog_site_word_count" value="21.7k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://zikun97.github.io/">Zikun</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color3">mathjax</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">latex</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">机器学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">线性回归</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">Spring</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">opencv</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">Segmentation</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a id="top" class="Java "
+           href="/2021/08/30/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="Spring相关知识点">Spring相关知识点</span>
+            <span class="post-date" title="2021-08-30 16:01:55">2021/08/30</span>
+        </a>
+        
+        <a id="top" class="Java "
+           href="/2021/08/24/Java%E9%9D%A2%E8%AF%95%E8%A6%81%E7%82%B9%E6%8F%90%E9%86%92/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java面试要点提醒">Java面试要点提醒</span>
+            <span class="post-date" title="2021-08-24 15:56:02">2021/08/24</span>
+        </a>
+        
+        <a id="top" class="杂项 "
+           href="/2021/08/18/2022%E5%B1%8A%E7%A7%8B%E6%8B%9B%E6%97%B6%E9%97%B4%E8%8A%82%E7%82%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2022届秋招时间节点">2022届秋招时间节点</span>
+            <span class="post-date" title="2021-08-18 15:09:14">2021/08/18</span>
+        </a>
+        
+        <a  class="基础知识 "
+           href="/2021/08/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="操作系统相关知识点">操作系统相关知识点</span>
+            <span class="post-date" title="2021-08-30 16:28:00">2021/08/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2021/08/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="计算机网络相关知识点">计算机网络相关知识点</span>
+            <span class="post-date" title="2021-08-30 16:27:49">2021/08/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2021/08/30/MyBatis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MyBatis相关知识点">MyBatis相关知识点</span>
+            <span class="post-date" title="2021-08-30 16:27:04">2021/08/30</span>
+        </a>
+        
+        <a  class="Mysql "
+           href="/2021/08/30/MySql%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MySql相关知识点">MySql相关知识点</span>
+            <span class="post-date" title="2021-08-30 16:26:37">2021/08/30</span>
+        </a>
+        
+        <a  class="Paper "
+           href="/2021/01/15/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E5%8F%8A%E7%90%86%E8%A7%A3%EF%BC%9AObject-Contextual-Representations-for-Semantic-Segmentation/"
+           data-tag="Segmentation"
+           data-author="" >
+            <span class="post-title" title="论文翻译及理解：Object Contextual Representations for Semantic Segmentation">论文翻译及理解：Object Contextual Representations for Semantic Segmentation</span>
+            <span class="post-date" title="2021-01-15 16:47:34">2021/01/15</span>
+        </a>
+        
+        <a  class="基础数学知识 "
+           href="/2019/12/02/mathjax%E8%BF%9B%E9%98%B6/"
+           data-tag="mathjax,latex"
+           data-author="" >
+            <span class="post-title" title="mathjax进阶">mathjax进阶</span>
+            <span class="post-date" title="2019-12-02 09:44:29">2019/12/02</span>
+        </a>
+        
+        <a  class="基础数学知识 "
+           href="/2019/11/30/mathjax%E5%9F%BA%E6%9C%AC%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F-latex%E5%85%AC%E5%BC%8F/"
+           data-tag="mathjax,latex"
+           data-author="" >
+            <span class="post-title" title="mathjax基本数学公式(latex公式)">mathjax基本数学公式(latex公式)</span>
+            <span class="post-date" title="2019-11-30 14:05:32">2019/11/30</span>
+        </a>
+        
+        <a  class="机器学习 "
+           href="/2019/11/27/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%98%AF%E4%BB%80%E4%B9%88/"
+           data-tag="机器学习"
+           data-author="" >
+            <span class="post-title" title="机器学习的本质是什么">机器学习的本质是什么</span>
+            <span class="post-date" title="2019-11-27 19:45:49">2019/11/27</span>
+        </a>
+        
+        <a  class="OpenCV "
+           href="/2019/11/27/Opencv%E4%B8%AD%E7%9A%84x%E3%80%81y%E3%80%81col%E3%80%81row%E3%80%81height%E3%80%81width%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Opencv中的x、y、col、row、height、width对应关系">Opencv中的x、y、col、row、height、width对应关系</span>
+            <span class="post-date" title="2019-11-27 15:41:03">2019/11/27</span>
+        </a>
+        
+        <a  class="机器学习 "
+           href="/2019/11/26/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3/"
+           data-tag="线性回归"
+           data-author="" >
+            <span class="post-title" title="线性回归的通俗理解">线性回归的通俗理解</span>
+            <span class="post-date" title="2019-11-26 22:25:50">2019/11/26</span>
+        </a>
+        
+        <a  class="OpenCV "
+           href="/2019/11/23/OpenCV%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%A1%A8%E7%A4%BA/"
+           data-tag="opencv"
+           data-author="" >
+            <span class="post-title" title="OpenCV中的基本类型表示">OpenCV中的基本类型表示</span>
+            <span class="post-date" title="2019-11-23 09:31:20">2019/11/23</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-Java面试要点提醒" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Java面试要点提醒</h1>
+    
+    <div class="article-meta">
+        
+        <span class="top"><a>置顶</a></span>
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="Java">Java</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2021-08-24 15:56:02'>2021-08-24 15:56</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:3.6k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">Java 基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%85%E7%AE%B1%E4%B8%8E%E6%8B%86%E7%AE%B1"><span class="toc-text">装箱与拆箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%8D%E5%86%99equals-%E6%97%B6%EF%BC%8C%E4%B8%80%E5%AE%9A%E8%A6%81%E9%87%8D%E5%86%99hashCode"><span class="toc-text">为什么重写equals()时，一定要重写hashCode()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E6%B3%9B%E5%9E%8B%E6%9C%BA%E5%88%B6"><span class="toc-text">Java泛型机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E6%93%A6%E9%99%A4%E4%BC%9A%E5%AF%BC%E8%87%B4%E7%BB%A7%E6%89%BF%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-text">泛型擦除会导致继承出现问题？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E6%B3%A8%E8%A7%A3%E6%9C%BA%E5%88%B6"><span class="toc-text">Java注解机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E6%B3%A8%E8%A7%A3"><span class="toc-text">内置注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E6%B3%A8%E8%A7%A3"><span class="toc-text">元注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84"><span class="toc-text">注解与反射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-text">注解的原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6"><span class="toc-text">Java异常机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#try-catch-finally%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">try-catch-finally执行顺序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-SPI-Service-Provider-Interface-%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E5%8F%91%E7%8E%B0%E6%9C%BA%E5%88%B6"><span class="toc-text">Java SPI(Service Provider Interface) 服务提供发现机制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E5%AE%B9%E5%99%A8"><span class="toc-text">Java容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#String%E7%9A%84%E5%BA%95%E5%B1%82"><span class="toc-text">String的底层</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E5%B9%B6%E5%8F%91"><span class="toc-text">Java并发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#volatile%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">volatile关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E9%94%81%E7%8A%B6%E6%80%81%E3%80%81%E5%81%8F%E5%90%91%E9%94%81%E3%80%81%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81%E3%80%81%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81"><span class="toc-text">无锁状态、偏向锁、轻量级锁、重量级锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AQS"><span class="toc-text">AQS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-text">JVM相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Class%E6%96%87%E4%BB%B6"><span class="toc-text">Class文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-text">JVM的组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-text">对象创建过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E4%B8%8D%E6%98%AF%E6%89%80%E6%9C%89%E5%AF%B9%E8%B1%A1%E9%83%BD%E5%9C%A8%E5%A0%86%E4%B8%8A%E5%88%86%E9%85%8D"><span class="toc-text">并不是所有对象都在堆上分配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80"><span class="toc-text">对象的内存布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-text">类加载机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-text">GC垃圾回收</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E5%8F%8A%E5%87%BA%E9%94%99%E6%9F%A5%E6%89%BE"><span class="toc-text">JVM调优及出错查找</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java8%E6%96%B0%E7%89%B9%E6%80%A7"><span class="toc-text">Java8新特性</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-5 i,
+    .toc-level-5 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-基础知识"><a href="#Java-基础知识" class="headerlink" title="Java 基础知识"></a>Java 基础知识</h1><h2 id="装箱与拆箱"><a href="#装箱与拆箱" class="headerlink" title="装箱与拆箱"></a>装箱与拆箱</h2><pre><code class="lang-Java">    Integer a = 1;  // 调用的是Integer.valueOf(int i)方法
+    int m = a;      // 调用的是Integer.intValue()方法
+
+    public static Integer valueOf(int i) &#123;
+        if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)
+            return IntegerCache.cache[i + (-IntegerCache.low)];
+        return new Integer(i);
+    &#125;
+
+
+
+    /**********************************/
+    Integer a = new Integer(1);
+
+    System.out.println(a == b);
+    // false
+</code></pre>
+<ul>
+<li><code>Byte</code>, <code>Short</code>, <code>Integer</code>, <code>Long</code>类型的缓冲池值的范围均为<code>-128 ~ 127</code></li>
+<li><code>Character</code>类型的缓冲池为<code>0 ~ 127</code></li>
+<li><code>Boolean</code>缓冲池为<code>TRUE/FALSE</code></li>
+<li><code>Double</code>, <code>Float</code>没有缓冲池</li>
+</ul>
+<h2 id="为什么重写equals-时，一定要重写hashCode"><a href="#为什么重写equals-时，一定要重写hashCode" class="headerlink" title="为什么重写equals()时，一定要重写hashCode()"></a>为什么重写equals()时，一定要重写hashCode()</h2><p>hashCode()方法一般在HashMap中使用<br>hashCode()是和equals()配对使用的</p>
+<h2 id="Java泛型机制"><a href="#Java泛型机制" class="headerlink" title="Java泛型机制"></a>Java泛型机制</h2><p>Java泛型其实是<strong>伪泛型</strong>，在编译过程中会进行<strong>类型擦除</strong>。<br>而我们在使用一些泛型类时，IDE会出现错误提示。这是因为Java编译器通过<strong>先检查代码中泛型的类型</strong>，<strong>然后进行类型擦除</strong>，<strong>再进行编译</strong>。<br>Java编译器的<strong>泛型类型检查</strong>针对<strong>泛型的引用</strong>。<strong>类型检查就是针对引用的，谁是一个引用，用这个引用调用泛型方法，就会对这个引用调用的方法进行类型检测，而无关它真正引用的对象。</strong><br>由于类型擦除的存在，<strong>泛型类型不可实例化</strong>，<strong>泛型数组也不可初始化</strong>（泛型数组可通过<strong>通配符</strong><code>?</code>初始化，不过需要强制转换）；泛型数组可通过<code>反射</code>初始化，<code>java.lang.reflect.Array.newInstance(Class&lt;T&gt; componentType, int length)</code>。<br><em>泛型类</em>中的<strong>静态方法</strong>和<strong>静态变量*</strong>不可以<em>使用泛型类所声明的泛型类型参数;<br>如何获取泛型：可以通过反射（<code>java.lang.reflect.Type</code>）获取泛型。<br>异常中泛型的使用：不能抛出或者捕获<strong>泛型类的对象</strong>；不能在<em>*catch语句</em></em>中使用泛型；但是在异常声明中可以使用泛型。例子如下：</p>
+<pre><code class="lang-java">public static&lt;T extends Throwable&gt; void doWork(T t) throws T &#123;
+    try&#123;
+        ...
+    &#125; catch(Throwable realCause) &#123;
+        t.initCause(realCause);
+        throw t; 
+    &#125;
+&#125;
+</code></pre>
+<h3 id="泛型擦除会导致继承出现问题？"><a href="#泛型擦除会导致继承出现问题？" class="headerlink" title="泛型擦除会导致继承出现问题？"></a>泛型擦除会导致继承出现问题？</h3><p>继承会重写方法，但是Java泛型在编译期会将泛型擦除，那么继承泛型的子类重写的方法和父类方法的参数类型不一致，这还是重写吗？<br>解决方法：JVM会在内部生成一个桥方法（桥方法的参数类型是擦除后的类型）来调用我们重写的方法，这样就另类实现了重写。<code>Methon</code>类中的<code>isBridge()</code>方法就是判断该方式是否为桥方法。</p>
+<h2 id="Java注解机制"><a href="#Java注解机制" class="headerlink" title="Java注解机制"></a>Java注解机制</h2><p>不能使用关键字extends来继承某个<code>@interface</code>，但注解在编译后，编译器会自动继承<code>java.lang.annotation.Annotation</code>接口.</p>
+<h3 id="内置注解"><a href="#内置注解" class="headerlink" title="内置注解"></a>内置注解</h3><ul>
+<li>@Override</li>
+<li>@Deprecated</li>
+<li>@SupressWarnings</li>
+</ul>
+<h3 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h3><p>Java的注解由原注解组合得到的。</p>
+<ul>
+<li>@Target</li>
+<li>@Retention &amp; @RetetionTarget</li>
+<li>@Documented</li>
+<li>@Inherited</li>
+<li>@Repeatable(Java8)</li>
+<li>@Native(Java8)</li>
+</ul>
+<h3 id="注解与反射"><a href="#注解与反射" class="headerlink" title="注解与反射"></a>注解与反射</h3><p>注解可以通过反射获得，也是通过反射对注解进行拦截，从而实现各种各样的功能。</p>
+<h3 id="注解的原理"><a href="#注解的原理" class="headerlink" title="注解的原理"></a>注解的原理</h3><p>注解是一个<strong>接口</strong>，继承自<code>Annotation</code>接口。<br>如何实例化接口？通过jdk动态代理，<code>AnnotationInvocationHandler</code>和<code>Proxy</code>实现动态代理。</p>
+<h2 id="Java异常机制"><a href="#Java异常机制" class="headerlink" title="Java异常机制"></a>Java异常机制</h2><h3 id="try-catch-finally执行顺序"><a href="#try-catch-finally执行顺序" class="headerlink" title="try-catch-finally执行顺序"></a>try-catch-finally执行顺序</h3><p><strong>当try没有捕获到异常时</strong>：try语句块中的语句逐一被执行，程序将跳过catch语句块，执行finally语句块和其后的语句；<br><strong>当try捕获到异常，catch语句块里没有处理此异常的情况</strong>：当try语句块里的某条语句出现异常时，而没有处理此异常的catch语句块时，此异常将会抛给JVM处理，finally语句块里的语句还是会被执行，但finally语句块后的语句不会被执行；<br><strong>当try捕获到异常，catch语句块里有处理此异常的情况</strong>：在try语句块中是按照顺序来执行的，当执行到某一条语句出现异常时，程序将跳到catch语句块，并与catch语句块逐一匹配，找到与之对应的处理程序，其他的catch语句块将不会被执行，而try语句块中，出现异常之后的语句也不会被执行，catch语句块执行完后，执行finally语句块里的语句，最后执行finally语句块后的语句</p>
+<h2 id="Java-SPI-Service-Provider-Interface-服务提供发现机制"><a href="#Java-SPI-Service-Provider-Interface-服务提供发现机制" class="headerlink" title="Java SPI(Service Provider Interface) 服务提供发现机制"></a>Java SPI(Service Provider Interface) 服务提供发现机制</h2><h1 id="Java容器"><a href="#Java容器" class="headerlink" title="Java容器"></a>Java容器</h1><h2 id="String的底层"><a href="#String的底层" class="headerlink" title="String的底层"></a>String的底层</h2><p>String的底层是一个<code>final char[]</code>数组，<code>String</code>支持运算符<code>+</code>是因为jvm内部将<code>String</code>转化为<code>StringBuilder</code>。</p>
+<h1 id="Java并发"><a href="#Java并发" class="headerlink" title="Java并发"></a>Java并发</h1><h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h2><ul>
+<li>保证变量的可见性<ul>
+<li><strong>并不能保证并发情况下volatile变量操作后的一致性</strong></li>
+<li>volatile变量在各个线程内可以看作是一致的（物理存储上可能会存在不一致，但是volatile变量在使用时会询问主存并更新状态，跟更新后也回以及写回主存）</li>
+</ul>
+</li>
+<li>禁止指令重排序（线程内指令串行化执行）</li>
+</ul>
+<h2 id="无锁状态、偏向锁、轻量级锁、重量级锁"><a href="#无锁状态、偏向锁、轻量级锁、重量级锁" class="headerlink" title="无锁状态、偏向锁、轻量级锁、重量级锁"></a>无锁状态、偏向锁、轻量级锁、重量级锁</h2><ul>
+<li>无锁<ul>
+<li>标识位01</li>
+</ul>
+</li>
+<li>偏向锁<ul>
+<li>Mark Word中hashcode位记为线程id，标识位01<ul>
+<li>如果hashcode位已经有值，则升级为重量级锁</li>
+<li>偏向锁过程中，使用了hasCode()，则升级为重量级锁</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>轻量级锁<ul>
+<li>标志位00</li>
+<li>原Mark Word中的值，存储至线程栈帧中</li>
+<li>Mark Word中存储 指向调用栈中的指针地址</li>
+</ul>
+</li>
+<li>重量级锁</li>
+</ul>
+<h2 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h2><ul>
+<li>作用：Java锁和同步器的框架。ReentrantLock等都是基于该</li>
+</ul>
+<h1 id="JVM相关知识"><a href="#JVM相关知识" class="headerlink" title="JVM相关知识"></a>JVM相关知识</h1><h2 id="Class文件"><a href="#Class文件" class="headerlink" title="Class文件"></a>Class文件</h2><ul>
+<li>魔数（4个字节 0xCAFEBABE）：很多文件使用魔数来验证文件格式，而不是扩展名，这样更安全</li>
+<li>版本号（4个字节）：前两个字节<em>次版本号</em>，后两个字节<em>主版本号</em></li>
+<li>常量池入口<ul>
+<li>常量池容量计数值（u2）</li>
+<li>字面量：文本字符串、被声明为<code>final</code>的值</li>
+<li>符号引用<ul>
+<li>被模块导出或者开放的包</li>
+<li>类和接口的全限定名</li>
+<li>字段的名称和描述符</li>
+<li>方法的名称和描述符</li>
+<li>方法句柄和方法类型（Method Handle, Method type, Invoke Dynamic）</li>
+<li>动态调用点和动态常量</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>访问标识（2个字节）：标注是类还是接口，虚类以及访问权限</li>
+<li>类索引、父类索引、接口索引</li>
+<li>字段表集合：声明的变量</li>
+<li>方法表集合：声明的方法</li>
+<li>属性表集合</li>
+</ul>
+<h2 id="JVM的组成"><a href="#JVM的组成" class="headerlink" title="JVM的组成"></a>JVM的组成</h2><ul>
+<li>类加载器</li>
+<li>执行引擎（解释器）</li>
+<li>本地接口库<ul>
+<li>让其他语言的接口可以为Java所用</li>
+</ul>
+</li>
+<li>运行时数据区：（Java内存模型）<ul>
+<li>堆<ul>
+<li>线程共享</li>
+<li>存放对象实例</li>
+<li><em>线程本地分配缓冲</em>（Thread Local Allocation Buffer， TLAB）</li>
+</ul>
+</li>
+<li>方法区<ul>
+<li>Class实例（类加载）、常量、静态变量、即时编译器编译后的代码缓存</li>
+<li>运行时常量池<ul>
+<li>类的版本、字段、方法、接口等描述信息</li>
+<li>常量池表（编译期间生成的字面量和符号引用，有时候直接引用也会存储在常量池表）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>虚拟机栈<ul>
+<li>局部变量表<ul>
+<li>基本变量、引用、ReturnAdress类型</li>
+<li>使用slot（槽）存储数据</li>
+<li>运行时大小不会改变</li>
+</ul>
+</li>
+<li>操作数栈</li>
+<li>动态链接</li>
+<li>方法出口</li>
+</ul>
+</li>
+<li>本地方法栈<ul>
+<li>调用本地（native）方法，基本结构同虚拟机栈相似</li>
+<li>在HotSpot虚拟机中，将虚拟机栈和本地方法栈合二为一了</li>
+</ul>
+</li>
+<li>程序计数器</li>
+</ul>
+</li>
+</ul>
+<h2 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h2><ul>
+<li><strong>类加载检查</strong>：检查指令的参数能否在常量池中定位到该类的符号引用， 并检查这个符号引用代表的类是否被加载过、解析和初始化过。如果没有，执行类加载过程。</li>
+<li>分配内存：对象所需空间在类加载时已经确定，分配内存有两种方法：①指针碰撞和②空闲列表。需要与GC收集器（GC算法）配合使用。<ul>
+<li>同步问题（多线程同时申请分配内存）：①同步措施：CAS + 失败重试 ② 使用TLAB（本地线程分配缓冲），当TLAB使用后，分配新的缓冲区使用同步措施。</li>
+</ul>
+</li>
+<li>初始化零值：将除对象头外的所有值设为0。如果使用了TLAB，则这一步在分配TLAB时顺便完成。</li>
+<li>设置对象头</li>
+<li>执行init方法</li>
+</ul>
+<h3 id="并不是所有对象都在堆上分配"><a href="#并不是所有对象都在堆上分配" class="headerlink" title="并不是所有对象都在堆上分配"></a>并不是所有对象都在堆上分配</h3><ul>
+<li>逃逸分析<ul>
+<li>类型：不逃逸、方法逃逸、线程逃逸</li>
+<li>分配在栈上</li>
+<li>分离对象或标量替换：将对象分解为多个局部变量</li>
+<li>同步锁消除</li>
+</ul>
+</li>
+</ul>
+<h2 id="对象的内存布局"><a href="#对象的内存布局" class="headerlink" title="对象的内存布局"></a>对象的内存布局</h2><ul>
+<li>对象头<ul>
+<li>MarkWord：包含hash code、锁标识位、GC年龄、线程持有的锁、偏向线程的ID、偏向时间戳等。</li>
+<li>类型指针：指向元数据的指针，表明该对象是哪个类的实例</li>
+</ul>
+</li>
+<li>实例数据</li>
+<li>对齐填充</li>
+</ul>
+<h2 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h2><ul>
+<li>类加载过程<ul>
+<li>加载</li>
+<li>连接<ul>
+<li>验证：文件格式验证、元数据验证、字节码验证、符号引用验证</li>
+<li>准备：将类成员变量初始化为0；<code>final</code>修饰的成员变量在<em>编译</em>期间已经分配。</li>
+<li>解析：将符号引用转化为直接引用<ul>
+<li>符号引用：符号引用就是一组符号来描述目标，可以是任何字面量</li>
+<li>直接引用：直接指向目标的指针、相对偏移量或一个间接定位到目标的句柄。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>初始化<ul>
+<li>若有超类，先初始化超类</li>
+<li>执行静态初始化器和静态初始化成员变量（赋值）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>类加载器<ul>
+<li>启动类加载器<ul>
+<li>C++编写，是JVM的一部分；从JVM看来，类加载器只有两种：1）启动类加载器；2）其他加载器</li>
+<li>加载<code>&#123;JAVA_HOME&#125;/lib</code>目录下的类 或 <code>-Xbootclasspath</code>参数所指定存放路径中的类</li>
+<li>Java程序无法直接引用，使用null来指代</li>
+</ul>
+</li>
+<li>扩展类加载器<ul>
+<li>Sun公司实现，负责加载<code>&#123;JAVA_HOME&#125;/lib/ext</code>目录 或 <code>java.ext.dirs</code>系统变量指定的路径中的所有类库</li>
+</ul>
+</li>
+<li>应用类加载器<ul>
+<li><code>ClassLoader.getSystemClassLoader()</code>实现，又称 系统类加载器</li>
+<li>负责加载<code>ClassPath</code>上的所有类库</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="GC垃圾回收"><a href="#GC垃圾回收" class="headerlink" title="GC垃圾回收"></a>GC垃圾回收</h2><ul>
+<li>判断一个对象是否存活<ul>
+<li>引用计数法<ul>
+<li>难以解决<strong>循环引用</strong>问题</li>
+</ul>
+</li>
+<li>可达性分析算法<ul>
+<li>从<code>GC Roots</code>向下搜索，在引用链上的对象都是存活对象<ul>
+<li><code>GC Roots</code>对象包括：虚拟机栈中引用的对象、方法区中类静态属性引用的对象、方法区中常量引用的对象、本地方法栈中JNI引用的对象、同步锁持有的对象等。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>回收方法区<ul>
+<li>废弃常量</li>
+<li>不再使用的类型<ul>
+<li>该类的所有实例已经被回收</li>
+<li>该类的加载器已经被回收</li>
+<li>该类的<code>java.lang.Class</code>对象没有在任何地方被引用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>垃圾收集算法<ul>
+<li>标记清除算法</li>
+<li>复制算法</li>
+<li>标记整理算法</li>
+<li>分代收集算法</li>
+</ul>
+</li>
+<li>HotSpot执行细节<ul>
+<li>根节点枚举<ul>
+<li>所有的收集器需要在根节点枚举时<strong>暂停</strong>用户线程</li>
+<li>借助OopMap结构</li>
+</ul>
+</li>
+<li>安全点<ul>
+<li>不能因为每一条指令，而更新OopMap，只会在特定的位置记录这些信息，这些位置被成为安全点。</li>
+</ul>
+</li>
+<li>安全区域<ul>
+<li>确保在某一段代码片段之中，引用关系不会发生变化</li>
+</ul>
+</li>
+<li>记忆集和卡表<ul>
+<li>记忆集：用于记录从非收集区域指向收集区域的指针集合的抽象数据结构。<ul>
+<li>包含三种记录精度：字长精度、对象精度、卡精度</li>
+</ul>
+</li>
+<li>卡表：记忆集卡精度实现的方式。也是最常用的记忆集形式。</li>
+</ul>
+</li>
+<li>写屏障<ul>
+<li>作用：动态维护卡表状态</li>
+<li>理解：类似于“引用类型字段赋值”的AOP操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>垃圾收集器<ul>
+<li>Serial<ul>
+<li>最基础、历史最悠久的收集器</li>
+<li>单线程收集器、工作时必须暂停所有工作线程</li>
+<li>简单高效</li>
+<li>新生代采用复制算法，老年代使用标记-整理算法</li>
+</ul>
+</li>
+<li>ParNew<ul>
+<li>Serial收集器的多线程版本</li>
+<li>与CMS配合使用</li>
+</ul>
+</li>
+<li>Parallel Scavenge<ul>
+<li>更关注吞吐量（高效率利用cpu），CMS等收集器更关注的是用户线程的停顿时间（提高用户体验）</li>
+<li>JDK1.8默认收集器</li>
+</ul>
+</li>
+<li>Serial Old收集器<ul>
+<li>Serial收集器的老年代版本</li>
+<li>①搭配Parallel Scavenge使用 ②作为CMS收集器的后备方案</li>
+</ul>
+</li>
+<li>Parallel Old<ul>
+<li>Parallel Scavenge的老年代版本</li>
+</ul>
+</li>
+<li>CMS收集器（Concurrent Mark Sweep）<ul>
+<li>以获取最短回收停顿时间为目标的收集器</li>
+<li>HotSpot第一款并发收集器；并发收集、低停顿</li>
+<li>步骤：<ul>
+<li>初始标记：stop the world</li>
+<li>并发标记</li>
+<li>重新标记：stop the world</li>
+<li>并发清除</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>对cpu资源敏感</li>
+<li>无法处理浮动垃圾</li>
+<li>标记清除算法会产生大量的空间碎片，当碎片过多的时候，会合并空间，该过程是无法并发的，会浪费大量的时间。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Garbage First收集器<ul>
+<li>“全功能的垃圾收集器”</li>
+<li>面向服务器端应用的垃圾收集器，主要针对配备多颗处理器及⼤容量内存的机器. 以极⾼概率满⾜ GC 停顿时间要求的同时,还具备⾼吞吐量性能特征</li>
+<li>收集器面向局部的设计思路——基于Region的内存布局形式 <ul>
+<li>将Java堆分为许多大小相等的独立区域（Region），每一个Region可以根据需要，扮演Eden区、Survivor区和老年代。</li>
+<li>Region中有一类特殊的Humongous区域，专门存储大对象（超过Region一半的空间都是大对象）</li>
+<li>Region的大小必须是2的N次幂</li>
+</ul>
+</li>
+<li>特点：<ul>
+<li>并行与并发：充分利用多cpu、多核的优势</li>
+<li>分代收集：不需要其他收集器配合使用，但仍保留分代的概念</li>
+<li>空间整合：从整体上看是“标记-整理”，从部分上看是“标记-复制”</li>
+<li>可预测的停顿：低停顿，并能建立可预测的停顿时间模型</li>
+</ul>
+</li>
+<li>步骤：<ul>
+<li>初始标记（stop the world）</li>
+<li>并发标记</li>
+<li>最终标记（stop the world）</li>
+<li>筛选回收（stop the world）<ul>
+<li>G1收集器在后台维护了一个优先队列，每次根据允许的收集时间，有限选择回收价值最大的Region</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="JVM调优及出错查找"><a href="#JVM调优及出错查找" class="headerlink" title="JVM调优及出错查找"></a>JVM调优及出错查找</h2><ul>
+<li><h1 id="Java8新特性"><a href="#Java8新特性" class="headerlink" title="Java8新特性"></a>Java8新特性</h1></li>
+<li><p>接口的默认方法（虚拟扩展方法）</p>
+<ul>
+<li>Java7及之前的版本不支持接口实现方法。</li>
+</ul>
+</li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 525244039@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Java面试要点提醒</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">3.6k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="Zikun">Zikun</a></p>
+    <p><span class="copy-title">发布时间:</span>2021-08-24, 15:56:02</p>
+    <p><span class="copy-title">最后更新:</span>2021-08-24, 15:56:02</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/08/24/Java%E9%9D%A2%E8%AF%95%E8%A6%81%E7%82%B9%E6%8F%90%E9%86%92/" title="Java面试要点提醒">http://zikun97.github.io/2021/08/24/Java%E9%9D%A2%E8%AF%95%E8%A6%81%E7%82%B9%E6%8F%90%E9%86%92/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'a9f21fc476e36ad15f3f',
+            clientSecret: '13d0e595da9145ca8894a354ed6bc80a13cc444c',
+            repo: 'Zikun97.github.io',
+            owner: 'Zikun97',
+            admin: ['Zikun97'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Zikun</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#mathjax','#latex','#机器学习','#线性回归','#Spring','#opencv','#Segmentation',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

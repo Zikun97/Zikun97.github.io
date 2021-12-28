@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>2022届秋招时间节点 | Zikun&#39;s blogs</title>
+  <title>MySql相关知识点 | Zikun&#39;s blogs</title>
   <meta name="keywords" content="">
-  <meta name="description" content="2022届秋招时间节点 | Zikun&#39;s blogs">
+  <meta name="description" content="MySql相关知识点 | Zikun&#39;s blogs">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="操作系统的含义及作用用来管理硬件和软件资源，屏蔽了硬件系统的复杂性。负责内存管理、硬件管理、文件管理、应用管理。 进程与线程 进程的状态 创建状态 就绪状态 运行状态 阻塞状态 挂起状态 阻塞挂起状态   终止状态   进程与线程的区别 进程调度算法 先来先服务 短作业优先 高响应比有限 最高优先级调度 时间片轮转 多级反馈队列    进程、线程与协程上下文切换 cpu上下文切换：cpu寄存器、程">
 <meta property="og:type" content="article">
@@ -427,19 +427,17 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-2022届秋招时间节点" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-MySql相关知识点" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">2022届秋招时间节点</h1>
+        <h1 class="article-title">MySql相关知识点</h1>
     
     <div class="article-meta">
-        
-        <span class="top"><a>置顶</a></span>
         
         
         
         <span class="book">
             
-                <a  data-rel="杂项">杂项</a>
+                <a  data-rel="Mysql">Mysql</a>
             
         </span>
         
@@ -447,12 +445,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2021-08-18 15:09:14'>2021-08-18 15:09</time>
+        创建时间:<time class="date" title='更新时间: 2021-08-30 16:26:37'>2021-08-30 16:26</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:151</span>
+        <span>字数:1.7k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -482,7 +480,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2022%E5%B1%8A%E7%A7%8B%E6%8B%9B%E6%97%B6%E9%97%B4%E8%8A%82%E7%82%B9"><span class="toc-text">2022届秋招时间节点</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-SQL%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">0.SQL语句执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-SQL%E8%AF%AD%E5%8F%A5%E5%9C%A8MySQL%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">1.SQL语句在MySQL中的执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-sql%E7%9A%84%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F"><span class="toc-text">2.sql的日志系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB"><span class="toc-text">3.事务隔离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%B4%A2%E5%BC%95"><span class="toc-text">4.索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%85%A8%E5%B1%80%E9%94%81%E3%80%81%E8%A1%A8%E7%BA%A7%E9%94%81%E5%92%8C%E8%A1%8C%E7%BA%A7%E9%94%81"><span class="toc-text">5.全局锁、表级锁和行级锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E8%A7%A3MVCC"><span class="toc-text">详解MVCC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-text">一些注意点</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -498,147 +496,220 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="2022届秋招时间节点"><a href="#2022届秋招时间节点" class="headerlink" title="2022届秋招时间节点"></a>2022届秋招时间节点</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">公司</th>
-<th style="text-align:center">提前批截止</th>
-<th style="text-align:center">正式批时间</th>
-<th style="text-align:center">备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://talent.alibaba.com/">阿里</a></td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">7.19~</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://join.qq.com/">腾讯</a></td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">8.5-9.27</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://jobs.bytedance.com/campus/">字节</a></td>
-<td style="text-align:center"><del>7.31</del></td>
-<td style="text-align:center">8.1~</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://career.huawei.com/reccampportal/portal5/index.html">华为</a></td>
-<td style="text-align:center"><del>7.5</del>(fx)</td>
-<td style="text-align:center">9.1~</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://talent.baidu.com/external/baidu/campus.html">百度</a></td>
-<td style="text-align:center">8.27</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://careers.pinduoduo.com/campus/">拼多多</a></td>
-<td style="text-align:center">8.29</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://campus.meituan.com/">美团</a></td>
-<td style="text-align:center"><del>7.26</del>(客户端)</td>
-<td style="text-align:center">8.2~10.14</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="http://campus.jd.com/#/">京东</a></td>
-<td style="text-align:center"><del>7.15</del></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://campus.kuaishou.cn/#/campus/index">快手</a></td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">8.13~</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="http://campus.hr.xiaomi.com/#/">小米</a></td>
-<td style="text-align:center">8.31</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"><input type="checkbox" checked=true>已投递</td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://vipcompany.liepin.com/fe-xycompany-pc/vip2020-v2/lazadasz/position.html">lazada</a></td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">可投递</td>
-<td style="text-align:center">与阿里不冲突</td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://careers.oppo.com/campus/">oppo</a></td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">可投递</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://job.zte.com.cn/cn/">中兴</a></td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">8.16</td>
-<td style="text-align:center">ZTE57JQ60</td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://cmbntjob.cmbchina.com/pages/mycenter/default.html?fromLogin=true">招商网络科技</a></td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">8.16</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="http://campus.sf-express.com/#/personalCenter">顺丰</a></td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">8.16</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/743406?type=post&amp;order=time&amp;pos=&amp;page=2&amp;ncTraceId=&amp;channel=-1&amp;source_id=search_post_nctrack">科大讯飞</a></td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">8.16</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://career.hihonor.com/SU60eea919bef57c1023f6fe78/pb/school.html">荣耀</a></td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">8.16</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">[vivo][18]</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">8.16</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">[TP-link][19]</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">8.16</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"><a target="_blank" rel="noopener" href="https://app.mokahr.com/campus_apply/nio888/41117#/candidateHome/applications">蔚来</a></td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">8.16</td>
-<td style="text-align:center">AI算子开发岗位</td>
-</tr>
-<tr>
-<td style="text-align:center">[邮政储蓄][21]</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">8.16</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>[18]:<br>[19]: </p>
-<p>[21]: </p>
+        <h2 id="0-SQL语句执行顺序"><a href="#0-SQL语句执行顺序" class="headerlink" title="0.SQL语句执行顺序"></a>0.SQL语句执行顺序</h2><pre><code class="lang-SQL">(7) SELECT
+(8) DISTINCT &lt;select_list&gt;
+(1) FROM &lt;left_table&gt;
+(3) &lt;join_type&gt; JOIN &lt;right_table&gt;
+(2) ON &lt;join_condition&gt;
+(4) WHERE &lt;where_condition&gt;
+(5) GROUP BY &lt;group_by_list&gt;
+(6) HAVING &lt;having_condition&gt;
+(9) ORDER BY &lt;order_by_condition&gt;
+(10) LIMIT &lt;limit_number&gt;
+</code></pre>
+<ul>
+<li>from ：先确定查询范围</li>
+<li>ON：确定多表联合查询的条件</li>
+<li>JOIN：指定联合哪些数据表</li>
+<li>WHERE ：全表查询的筛选条件，生成第一个结果集</li>
+<li>GROUP BY：分组条件，对第一个结果集进行分组，得到第二个结果集</li>
+<li>HAVING ：过滤条件，与group by进行连用，对第二个结果集中的每组数据，进行筛选过滤，得到第三个结果集</li>
+<li>SELECT：指定获取的列项，得到第四个结果集</li>
+<li>DISTINCT ：对指定列进行去重操作</li>
+<li>ORDER BY：对结果集按照指定字段进行排序整理</li>
+<li>LIMIT：对最终结果集进行截取，一般和offset连用，可用于分页</li>
+</ul>
+<h2 id="1-SQL语句在MySQL中的执行顺序"><a href="#1-SQL语句在MySQL中的执行顺序" class="headerlink" title="1.SQL语句在MySQL中的执行顺序"></a>1.SQL语句在MySQL中的执行顺序</h2><ul>
+<li>MySQL组成<ul>
+<li>Server层<ul>
+<li>连接器<ul>
+<li>尽量使用长连接，但是执行sql的临时内存是管理在长连接对象中的，解决方案有两个<ul>
+<li>定期断开长连接</li>
+<li>Mysql 5.7及之后版本，执行完较大的查询操作后，使用mysql_reset_connection重新初始化连接</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>缓存（8.0版本已删除该功能）<ul>
+<li>保存查询结果，以&lt;查询语句, 查询结果&gt;的键值对形式存储</li>
+</ul>
+</li>
+<li>分析器</li>
+<li>优化器</li>
+<li>执行器</li>
+</ul>
+</li>
+<li>存储引擎层</li>
+</ul>
+</li>
+<li>执行过程（基础架构上来说）<ul>
+<li>1）先查询缓存，若缓存中有相同的命令，则直接返回执行结果</li>
+<li>2）在分析器中，进行词法分析、语法分析</li>
+<li>3）在优化器中，优化sql语句</li>
+<li>4）在执行器中，先检查权限，再检查</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-sql的日志系统"><a href="#2-sql的日志系统" class="headerlink" title="2.sql的日志系统"></a>2.sql的日志系统</h2><ul>
+<li>组成<ul>
+<li>redo log<ul>
+<li>特点：InnoDB特有的日志</li>
+<li>用处：当MySQL更新一条语句时，先更新到redo log并刷新内存，带到服务器空闲的时候将更改更新到磁盘。</li>
+<li>大小：4 * 1GB，结构类似循环链表。包含 write position和check position两个指针。</li>
+<li>内容：记录的是物理日志，即该数据页做了什么改动</li>
+</ul>
+</li>
+<li>binlog<ul>
+<li>特点：server层日志</li>
+<li>内容：记录的是逻辑日志。有两种格式：statement格式记录sql语句，row格式记录行的内容，记录两条—更新前后的行内容。</li>
+</ul>
+</li>
+<li>redo log和 binlog的不同<ul>
+<li>redo log 是 InnoDB 引擎特有的；binlog 是 MySQL 的 Server 层实现的，所有引擎都可以使用</li>
+<li>redo log 是物理日志，记录的是“在某个数据页上做了什么修改”；binlog 是逻辑日志，记录的是这个语句的原始逻，比如“给 ID=2 这一行的 c 字段加 1 ”。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>WAL（Write Ahead Log）技术<ul>
+<li>先写日志，再刷磁盘</li>
+</ul>
+</li>
+<li>执行过程（日志系统上来说）<ul>
+<li>1）执行器先找引擎取 ID=2 这一行。ID 是主键，引擎直接用树搜索找到这一行。如果ID=2 这一行所在的数据页本来就在内存中，就直接返回给执行器；否则，需要先从磁盘读入内存，然后再返回。</li>
+<li>2）执行器拿到引擎给的行数据，把这个值加上 1，比如原来是 N，现在就是 N+1，得到新的一行数据，再调用引擎接口写入这行新数据。</li>
+<li>3）引擎将这行新数据更新到内存中，同时将这个更新操作记录到 redo log 里面，此时redo log 处于 prepare 状态。然后告知执行器执行完成了，随时可以提交事务。</li>
+<li>4）执行器生成这个操作的 binlog，并把 binlog 写入磁盘。</li>
+<li>5）执行器调用引擎的提交事务接口，引擎把刚刚写入的 redo log 改成提交（commit）状态，更新完成。</li>
+</ul>
+</li>
+<li>两阶段提交：<ul>
+<li>作用对象：redo log</li>
+<li>目的：为了保持两个两个日志的一致性</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-事务隔离"><a href="#3-事务隔离" class="headerlink" title="3.事务隔离"></a>3.事务隔离</h2><ul>
+<li>并发事务可能出现的问题<ul>
+<li>脏读</li>
+<li>不可重复读</li>
+<li>幻读</li>
+</ul>
+</li>
+<li>事务隔离级别<ul>
+<li>读取未提交</li>
+<li>读取已提交</li>
+<li>可重复读<ul>
+<li>实现机制：<ul>
+<li>多版本并发控制：MVCC</li>
+<li>undo log：相当于含有多个read-view（版本），当没有事务在使用read-view时，删除该版本视图。</li>
+</ul>
+</li>
+<li>建议：<ul>
+<li>不要使用长事务<ul>
+<li>会导致undo log变长</li>
+<li>占用锁资源</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>串行化</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-索引"><a href="#4-索引" class="headerlink" title="4.索引"></a>4.索引</h2><ul>
+<li>作用：提高查询效率</li>
+<li>分类：（针对InnoDB引擎）<ul>
+<li>主键索引（聚簇索引）<ul>
+<li>叶子节点：存储整行的值</li>
+<li>自增主键：<ul>
+<li>B+树插入新节点会造成页分裂，使用自增主键可以避免这种情况</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>非主键索引<ul>
+<li>叶子节点：存储主键的值</li>
+<li>回表：需要到主键索引再次查询</li>
+<li>索引覆盖：不需要回表即可以得到查询数据</li>
+<li>前缀索引：最左前缀原则</li>
+<li>索引下推</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-全局锁、表级锁和行级锁"><a href="#5-全局锁、表级锁和行级锁" class="headerlink" title="5.全局锁、表级锁和行级锁"></a>5.全局锁、表级锁和行级锁</h2><ul>
+<li>全局（读）锁<ul>
+<li>使用场景：数据库做逻辑备份</li>
+<li>FTWRL(Flush Table With Read Lock)<ul>
+<li>当数据库中所有表的存储引擎为InnoDB时，不必使用FTWRL，因为InnoDB支持一致性读，即可重复读。（sqldump开启single-transaction参数，在备份中开启事务，确保拿到一致性视图）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>表级锁<ul>
+<li>表锁<ul>
+<li>显式使用：lock tables t1 read/write   unlock tables</li>
+</ul>
+</li>
+<li>元数据锁（MDL Metadata Lock）<ul>
+<li>非显式使用：在访问一个表的时候自动加上。</li>
+<li>作用：保证读写的正确性。</li>
+<li>触发机制：对表的增删改查机制都会<strong>先</strong>申请MDL</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>行级锁<ul>
+<li>行级锁是涉及该行的操作时才加锁，但是需要事务结束后才能释放（两阶段锁协议）</li>
+<li>死锁<ul>
+<li>解决办法<ul>
+<li>设置超时时间</li>
+<li>主动死锁检测（常用）<ul>
+<li>会占用较多的cpu资源</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>热点行更新问题<ul>
+<li>确保该业务不会出现死锁，关闭死锁检测（较少使用，风险比较大）</li>
+<li>控制并发度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>开发经验<ul>
+<li>在同一个事务中，如果要对多个行加上行锁，把最可能引起死锁、影响并发度的锁放到最后申请。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="详解MVCC"><a href="#详解MVCC" class="headerlink" title="详解MVCC"></a>详解MVCC</h2><ul>
+<li>什么是MVCC<ul>
+<li>多版本并发控制</li>
+</ul>
+</li>
+<li>先了解一下事务和锁的关系<ul>
+<li>使用<code>start transaction</code>命令后，该命令并不是事务的起点。第一个操作才是事务的开始； 使用<code>start transaction with consistent snapshot</code>后，立即开启事务</li>
+<li>当事务对数据进行进行增、删、改时，增加相应的next-key lock、行锁等</li>
+</ul>
+</li>
+<li>MVCC的表现<ul>
+<li>当一个</li>
+</ul>
+</li>
+</ul>
+<h2 id="一些注意点"><a href="#一些注意点" class="headerlink" title="一些注意点"></a>一些注意点</h2><ul>
+<li><code>start transaction</code>与<code>start transaction with consistent snapshot</code>的区别<ul>
+<li>使用<code>start transaction</code>命令后，该命令并不是事务的起点。第一个操作才是事务的开始</li>
+<li>使用<code>start transaction with consistent snapshot</code>后，立即开启事务</li>
+</ul>
+</li>
+</ul>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 525244039@qq.com </span>
@@ -652,12 +723,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>2022届秋招时间节点</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">151</span></p>
+    <p><span class="copy-title">文章标题:</span>MySql相关知识点</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.7k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="Zikun">Zikun</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-08-18, 15:09:14</p>
-    <p><span class="copy-title">最后更新:</span>2021-08-18, 15:09:14</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/08/18/2022%E5%B1%8A%E7%A7%8B%E6%8B%9B%E6%97%B6%E9%97%B4%E8%8A%82%E7%82%B9/" title="2022届秋招时间节点">http://zikun97.github.io/2021/08/18/2022%E5%B1%8A%E7%A7%8B%E6%8B%9B%E6%97%B6%E9%97%B4%E8%8A%82%E7%82%B9/</a>
+    <p><span class="copy-title">发布时间:</span>2021-08-30, 16:26:37</p>
+    <p><span class="copy-title">最后更新:</span>2021-08-30, 16:26:37</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/08/30/MySql%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" title="MySql相关知识点">http://zikun97.github.io/2021/08/30/MySql%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
